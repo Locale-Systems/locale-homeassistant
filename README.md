@@ -3,12 +3,20 @@
        alt="Locale Systems" height="84">
 </p>
 
-# Locale — Home Assistant Integration
+# Locale — Home Assistant
 
-Home Assistant integration for Locale Systems devices — pool
-controllers, salt-water chlorinators, and related equipment.
-Communicates entirely over your local network with real-time push
-updates. No cloud dependency.
+Home Assistant support for Locale Systems devices — pool controllers,
+salt-water chlorinators, and related equipment. Communicates entirely
+over your local network with real-time push updates. No cloud
+dependency.
+
+It comes as **two pieces from this one repository**:
+
+- the **Locale add-on** — discovers your devices on the network,
+  holds Home Assistant's device credential, serves devices time, and
+  receives their telemetry;
+- the **Locale integration** (HACS) — presents the devices the add-on
+  manages as native Home Assistant entities.
 
 ## Requirements
 
@@ -16,28 +24,40 @@ updates. No cloud dependency.
 - A Locale device on current firmware.
 - The **Locale Home** iOS app (the device's admin authorizes Home
   Assistant from there).
-- For automatic discovery, Home Assistant and the device should be on
-  the same local network.
+- The add-on host and the devices on the same local network segment
+  (mDNS + time service).
 
-## Installation (HACS)
+## Installation
 
-1. In HACS, add `https://github.com/Locale-Systems/locale-homeassistant`
-   as a custom repository (type: Integration).
+Use this repository's URL in **both** stores:
+
+**Add-on** (Home Assistant OS / Supervised):
+
+1. **Settings → Add-ons → Add-on Store → ⋮ → Repositories**, add
+   `https://github.com/Locale-Systems/locale-homeassistant`.
+2. Install **Locale** and start it.
+3. Copy the API token from the add-on log.
+
+(Running HA Core/Container without a Supervisor? Run the add-on image
+with Docker instead — `ghcr.io/locale-systems/locale-ha-addon`.)
+
+**Integration** (HACS):
+
+1. In HACS, add the same URL as a custom repository (type:
+   Integration).
 2. Search for **Locale**, install, and restart Home Assistant.
 
-## Onboarding
+## Setup & onboarding
 
-1. After restart, a **Locale** device usually appears under
-   **Settings → Devices & Services** within a minute (or add it
-   manually with **Add Integration → Locale**).
-2. Home Assistant shows a short *request* to hand to your device
-   admin. In the **Locale Home** iOS app, the admin reviews it and
-   either delivers the authorization directly over the network or
-   hands back a *grant* you paste into Home Assistant.
-3. One Home Assistant device is created per authorized Locale device.
-
-If the device's authorization is later revoked or reset, Home
-Assistant raises a repair you can fix the same way.
+1. **Add Integration → Locale**, enter the add-on host/port (defaults
+   are right for an add-on on the same machine) and the API token.
+2. Open the integration's **Configure** menu → **Adopt devices**.
+   Home Assistant shows a short *request* (QR or text) to hand to
+   your device admin. In the **Locale Home** iOS app, the admin
+   reviews it and hands back a *grant* you paste into Home Assistant.
+3. Adopted devices appear automatically within about half a minute —
+   every authorized Locale device shows up under the single Locale
+   entry. Run **Adopt devices** again anytime to add more.
 
 ## What you get
 
@@ -50,8 +70,8 @@ device exposes one. Each device also gets:
   entity instead of spawning extra ones.
 - **Fault sensors** — a companion fault binary sensor per entity,
   carrying the device's fault code and message when active.
-- A **Connection** diagnostic sensor for the live-update stream
-  health.
+- A **Connection** diagnostic sensor reflecting the device's
+  reachability on your network.
 
 ### Firmware updates
 
