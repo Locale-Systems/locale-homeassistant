@@ -1,0 +1,44 @@
+# Home Assistant Supervisor add-on manifest (HAOS / Supervised path).
+#
+# Uses the prebuilt multi-arch image published to GHCR by CI — "same
+# image, two paths" (the other path is ../deploy/docker-compose.yaml).
+# Supervisor pulls `image` + ":{version}" rather than building from the
+# Dockerfile.
+#
+# This file is the contract Supervisor reads. The release workflow
+# (.github/workflows/release.yml, tag v*) stamps `version` from the tag
+# and publishes this directory (config.yaml, DOCS.md, CHANGELOG.md)
+# into the public locale-homeassistant repo, which doubles as the
+# Supervisor add-on store (repository.yaml at its root) alongside its
+# HACS role. `version` here stays "0.0.0" in source — the tag is the
+# single source of truth.
+name: Locale
+slug: locale_ha_addon
+version: "0.1.0"
+description: >-
+  Locale hub for Home Assistant — holds the platform connection and HA's
+  signing key, discovers Locale devices on the LAN, serves them time, and
+  bridges them to the Locale Home Assistant integration.
+url: "https://github.com/locale-systems/locale-ha-addon"
+
+# Supervisor expands {arch} and appends ":{version}". Per-arch image repos
+# (aarch64-…, amd64-…) are the HA add-on convention; the release workflow
+# publishes them (plus the multi-arch manifest the compose path uses).
+image: "ghcr.io/locale-systems/{arch}-locale-ha-addon"
+arch:
+  - aarch64
+  - amd64
+
+init: false
+
+# mDNS discovery + serving SNTP to LAN devices need L2 reach.
+host_network: true
+
+# Supervisor delivers add-on options as /data/options.json (not env vars).
+# TODO: entrypoint shim to read options.json -> the ADDON_* env the binary
+# expects (see internal/config). SUPERVISOR_TOKEN is injected as env
+# regardless, so token-mode detection already works.
+options:
+  log_level: info
+schema:
+  log_level: "list(debug|info|warn|error)?"
