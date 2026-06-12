@@ -1,0 +1,12 @@
+# Home Assistant Supervisor add-on repository manifest.
+#
+# This public repo serves BOTH distribution channels from one URL:
+#   - HACS custom repository (integration): hacs.json + manifest.json
+#     at root + locale.zip release assets.
+#   - Supervisor add-on store: this file + the locale-ha-addon/
+#     directory, which the locale-ha-addon release workflow publishes
+#     (version-stamped config.yaml + DOCS.md + CHANGELOG.md).
+# The two systems read disjoint parts of the tree and ignore the rest.
+name: Locale Systems
+url: https://github.com/Locale-Systems/locale-homeassistant
+maintainer: Locale Systems <gdoerr@localesystems.com>
