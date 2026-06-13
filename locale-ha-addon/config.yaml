@@ -14,7 +14,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.1.4"
+version: "0.1.5"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -34,10 +34,10 @@ init: false
 # mDNS discovery + serving SNTP to LAN devices need L2 reach.
 host_network: true
 
-# Supervisor delivers add-on options as /data/options.json (not env vars).
-# TODO: entrypoint shim to read options.json -> the ADDON_* env the binary
-# expects (see internal/config). SUPERVISOR_TOKEN is injected as env
-# regardless, so token-mode detection already works.
+# Supervisor delivers these as /data/options.json; config.Load reads that
+# file directly and overlays it on the env defaults (no entrypoint shim).
+# SUPERVISOR_TOKEN is injected as env regardless, so token-mode detection
+# works independently.
 options:
   log_level: info
 schema:
