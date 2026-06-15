@@ -14,7 +14,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.1.6"
+version: "0.1.7"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -40,5 +40,17 @@ host_network: true
 # works independently.
 options:
   log_level: info
+  sntp_advertise: ""
+  telemetry_advertise: ""
 schema:
   log_level: "list(debug|info|warn|error)?"
+  # When set, the add-on provisions each adopted device to use it.
+  # sntp_advertise: host:port the device should use as its ntp_server
+  #   (the add-on's SNTP server) — e.g. "192.168.1.10:1123".
+  # telemetry_advertise: https URL the device should post telemetry to
+  #   (the add-on's telemetry hub) + telemetry_root_tls=true — e.g.
+  #   "https://192.168.1.10:8443". Use the HA host's LAN address (the
+  #   DEVICE dials it), not localhost. Empty = leave the device's own
+  #   NTP/telemetry config untouched.
+  sntp_advertise: "str?"
+  telemetry_advertise: "str?"
