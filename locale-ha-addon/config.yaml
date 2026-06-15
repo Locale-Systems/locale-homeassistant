@@ -14,7 +14,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.1.9"
+version: "0.1.10"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -42,6 +42,7 @@ options:
   log_level: info
   sntp_advertise: ""
   telemetry_advertise: ""
+  platform_url: ""
 schema:
   log_level: "list(debug|info|warn|error)?"
   # When set, the add-on provisions each adopted device to use it.
@@ -54,3 +55,9 @@ schema:
   #   NTP/telemetry config untouched.
   sntp_advertise: "str?"
   telemetry_advertise: "str?"
+  # platform_url: Locale cloud base URL (e.g.
+  #   "https://platform.localesystems.com"). Enables firmware/OTA — the
+  #   add-on mints a device-scoped provision token from it (same open
+  #   mechanism iOS uses) and reads the firmware registry; no platform
+  #   credential is stored here or in the integration. Empty = no OTA.
+  platform_url: "str?"
