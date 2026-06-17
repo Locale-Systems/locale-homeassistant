@@ -14,7 +14,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.1.12"
+version: "0.2.0"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -42,7 +42,8 @@ options:
   log_level: info
   sntp_advertise: ""
   telemetry_advertise: ""
-  platform_url: ""
+  platform_url: "https://api.localesystems.com"
+  telemetry_forward: true
 schema:
   log_level: "list(debug|info|warn|error)?"
   # When set, the add-on provisions each adopted device to use it.
@@ -52,12 +53,20 @@ schema:
   #   (the add-on's telemetry hub) + telemetry_root_tls=true — e.g.
   #   "https://192.168.1.10:8443". Use the HA host's LAN address (the
   #   DEVICE dials it), not localhost. Empty = leave the device's own
-  #   NTP/telemetry config untouched.
+  #   NTP/telemetry config untouched. Can't be defaulted (site-specific);
+  #   the add-on logs the recommended values for your network at startup.
   sntp_advertise: "str?"
   telemetry_advertise: "str?"
-  # platform_url: Locale cloud base URL (e.g.
-  #   "https://platform.localesystems.com"). Enables firmware/OTA — the
-  #   add-on mints a device-scoped provision token from it (same open
-  #   mechanism iOS uses) and reads the firmware registry; no platform
-  #   credential is stored here or in the integration. Empty = no OTA.
+  # platform_url: Locale cloud base URL. Defaults to the Locale cloud
+  #   ("https://api.localesystems.com") so firmware/OTA works out of the
+  #   box — override only for dev/self-host. The add-on mints a
+  #   device-scoped provision token from it (same open mechanism iOS uses)
+  #   and reads the firmware registry; no platform credential is stored
+  #   here or in the integration. Empty = no OTA.
   platform_url: "str?"
+  # telemetry_forward: forward device telemetry to the Locale cloud under a
+  #   home-token (HA-bridged tier). Only takes effect once this Home is
+  #   connected to the cloud from the iOS app (an HA service credential is
+  #   registered) — with no credential nothing is forwarded regardless.
+  #   Set false to keep telemetry local even after connecting.
+  telemetry_forward: "bool?"
