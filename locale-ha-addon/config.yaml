@@ -14,7 +14,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.3.0"
+version: "0.3.2"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
