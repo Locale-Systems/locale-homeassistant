@@ -14,7 +14,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.3.12"
+version: "0.4.1"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -33,6 +33,26 @@ init: false
 
 # mDNS discovery + serving SNTP to LAN devices need L2 reach.
 host_network: true
+
+# Setup UI via Supervisor ingress (docs/addon-pairing.md §4): the SAME
+# minimal /pair page a standalone install reaches by hostname, here a
+# sidebar panel with HA-admin auth for free — no host/port/path to type.
+# ingress_port is the UI port the add-on serves (ADDON_UI_ADDR, default
+# :8088); keep it free on the host (host_network). Setup-only page — this
+# is the only Supervisor coupling, and it is benign.
+ingress: true
+ingress_port: 8088
+panel_icon: mdi:link-variant
+panel_title: Locale Pairing
+
+# Supervisor discovery (Workstream C, docs/addon-pairing.md §7): the add-on
+# publishes a private discovery message offering the integration its host/port
+# + API token, so the HAOS/Supervised user pastes nothing. UNVERIFIED on a live
+# Supervisor — the integration also discovers via zeroconf (_locale-addon._tcp)
+# and the manual host/port/token path remains. The `service` is the
+# integration's domain.
+discovery:
+  - locale
 
 # Supervisor delivers these as /data/options.json; config.Load reads that
 # file directly and overlays it on the env defaults (no entrypoint shim).
