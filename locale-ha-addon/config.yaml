@@ -7,14 +7,15 @@
 #
 # This file is the contract Supervisor reads. The release workflow
 # (.github/workflows/release.yml, tag v*) stamps `version` from the tag
-# and publishes this directory (config.yaml, DOCS.md, CHANGELOG.md)
-# into the public locale-homeassistant repo, which doubles as the
+# and publishes this directory (config.yaml, DOCS.md, plus a CHANGELOG.md
+# generated from the release tags) into the public locale-homeassistant
+# repo, which doubles as the
 # Supervisor add-on store (repository.yaml at its root) alongside its
 # HACS role. `version` here stays "0.0.0" in source — the tag is the
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.4.2"
+version: "0.4.3"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
