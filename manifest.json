@@ -14,7 +14,7 @@
     "segno>=1.6,<2"
   ],
   "single_config_entry": true,
-  "version": "0.6.4",
+  "version": "0.6.5",
   "zeroconf": [
     "_locale-addon._tcp.local."
   ]
