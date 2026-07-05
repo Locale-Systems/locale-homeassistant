@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.2
+
+- refactor(relay): collapse prepare/prepareProven onto shared ForwardDecision
+- chore(deps): repin locale-go-common (ForwardDecision)
+
 ## 0.5.1
 
 - fix(devices): cap management transport at one connection per device
