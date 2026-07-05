@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1
+
+- fix(devices): cap management transport at one connection per device
+- feat(relay): forward OTA as the relayed owner (PROVEN ota)
+
 ## 0.5.0
 
 - Revise addon documentation to reflect current state
