@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+- Revise addon documentation to reflect current state
+- chore(deps): repin locale-contracts + locale-go-common (role:agent)
+- feat(relay): carry subject_token + forward PROVEN management ops
+
 ## 0.4.3
 
 - go.mod: bump contracts pin to cc6b63a
