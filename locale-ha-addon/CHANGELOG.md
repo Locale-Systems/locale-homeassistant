@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.5
+
+- api: connect-cloud over the mobile mTLS edge (no QR)
+
 ## 0.5.4
 
 - cloudtunnel: quiet idle when no HA credential + dispatch log
