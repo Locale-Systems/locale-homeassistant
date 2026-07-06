@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.4
+
+- cloudtunnel: quiet idle when no HA credential + dispatch log
+
 ## 0.5.3
 
 - cloudtunnel: add-on WS tunnel to platform (platformsse Phase 1, add-on side)
