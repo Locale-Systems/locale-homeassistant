@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.3
+
+- cloudtunnel: add-on WS tunnel to platform (platformsse Phase 1, add-on side)
+
 ## 0.5.2
 
 - refactor(relay): collapse prepare/prepareProven onto shared ForwardDecision
