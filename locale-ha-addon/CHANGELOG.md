@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.6
+
+- cloudtunnel: use shared tunnelwire frame codec
+
 ## 0.5.5
 
 - api: connect-cloud over the mobile mTLS edge (no QR)
