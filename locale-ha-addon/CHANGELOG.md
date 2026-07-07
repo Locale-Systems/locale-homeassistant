@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.9
+
+- addon: whole-home multiplexed tunnel /events (home-events-multiplexing step 1)
+- addon: tunnel dispatch reads device_id from AddonService body
+
 ## 0.5.8
 
 - refactor(relay): use shared gorelay.EventsForwardDecision
