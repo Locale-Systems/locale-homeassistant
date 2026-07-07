@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.10
+
+- addon: use go-common VerifyRaw / ParseP256SPKI / DecodePayload
+- addon: shared relay refusal rendering + target-device header constant
+
 ## 0.5.9
 
 - addon: whole-home multiplexed tunnel /events (home-events-multiplexing step 1)
