@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.8
+
+- refactor(relay): use shared gorelay.EventsForwardDecision
+
 ## 0.5.7
 
 - feat(cloudtunnel): stream device /events over the add-on tunnel (Phase 2)
