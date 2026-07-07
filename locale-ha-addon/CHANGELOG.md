@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.7
+
+- feat(cloudtunnel): stream device /events over the add-on tunnel (Phase 2)
+
 ## 0.5.6
 
 - cloudtunnel: use shared tunnelwire frame codec
