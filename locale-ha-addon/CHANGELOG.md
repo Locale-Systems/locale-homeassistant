@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.11
+
+- feat(cloudtunnel): relay config-write + reboot over the tunnel
+- chore: pin locale-go-common to merged mgmt-grammar rev
+
 ## 0.5.10
 
 - addon: use go-common VerifyRaw / ParseP256SPKI / DecodePayload
