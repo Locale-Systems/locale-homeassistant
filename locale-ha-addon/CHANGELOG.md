@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.12
+
+- feat(relay): VOUCHED config reads over cloud + LAN edge (#52)
+
 ## 0.5.11
 
 - feat(cloudtunnel): relay config-write + reboot over the tunnel
