@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.13
+
+- fix(cloudtunnel): route device-read GETs to dispatch, not serveEvents (#53)
+
 ## 0.5.12
 
 - feat(relay): VOUCHED config reads over cloud + LAN edge (#52)
