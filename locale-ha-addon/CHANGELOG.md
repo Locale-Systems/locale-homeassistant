@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.14
+
+- feat(relay): actionable log for a stale relay-grant refusal (#54)
+
 ## 0.5.13
 
 - fix(cloudtunnel): route device-read GETs to dispatch, not serveEvents (#53)
