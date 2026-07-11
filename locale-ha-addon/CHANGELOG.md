@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.15
+
+- chore(deps): repin locale-contracts + locale-go-common (corpus v13)
+- home-wire-v1 + device-outbound-hub: verbatim relay edges; accept the device-dialed tunnel (#55)
+
 ## 0.5.14
 
 - feat(relay): actionable log for a stale relay-grant refusal (#54)
