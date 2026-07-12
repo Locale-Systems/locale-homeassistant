@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.16
+
+- deps: locale-go-common b654af2 (streamChunkSize 32K for device PSRAM)
+
 ## 0.5.15
 
 - chore(deps): repin locale-contracts + locale-go-common (corpus v13)
