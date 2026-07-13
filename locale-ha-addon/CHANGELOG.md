@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.2
+
+- devtunnel: resolve device addresses via mDNS discovery, not the OS resolver
+
 ## 0.6.1
 
 - devtunnel: flip device link from acceptor to dialer
