@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+- devtunnel: flip device link from acceptor to dialer
+
 ## 0.6.0
 
 - Flip both tunnel legs from tunnelwire-over-WebSocket onto LMUX (#56)
