@@ -158,6 +158,11 @@ Home to the Locale cloud from the iOS app:
   cloud), the add-on reads the firmware registry and can offer OTA. It mints
   its own device-scoped provision token — no platform credential is stored in
   the add-on or the integration. Leave `platform_url` blank to disable.
+- **Remote access (cloud tunnel):** if `platform_mux_addr` is set, the add-on
+  holds one persistent LMUX session to the platform's mux ingress
+  (authenticated by its role:ha carrier identity once the Home is enrolled)
+  and serves remote entity/management requests relayed down it. Blank
+  disables the remote tier.
 - **Telemetry forwarding:** with `telemetry_forward` on **and** an HA service
   credential registered, the add-on drains its local telemetry store to the
   cloud under a home-token (the HA-bridged tier). With no credential nothing
@@ -194,6 +199,7 @@ integration find the add-on without a typed address.
 | `sntp_advertise` | *(blank)* | `host:port` to hand adopted devices as their NTP server, e.g. `192.168.1.10:1123` — the HA host's LAN address (the device dials it). Blank = leave device NTP untouched. |
 | `telemetry_advertise` | *(blank)* | `https://host:port` to point adopted devices' telemetry at this add-on, e.g. `https://192.168.1.10:8443`. Blank = devices post direct. |
 | `platform_url` | Locale cloud | Cloud base URL for firmware/OTA. Override for dev/self-host; blank disables OTA. |
+| `platform_mux_addr` | *(blank)* | Platform LMUX ingress endpoint (`host:port`, e.g. `api.localesystems.com:9443`) for the persistent cloud tunnel (remote access tier). Blank = cloud tunnel disabled; OTA via `platform_url` is unaffected. |
 | `telemetry_forward` | `true` | Forward device telemetry to the cloud under a home-token (only takes effect once the Home is cloud-connected). Set false to keep telemetry local. |
 
 `sntp_advertise` / `telemetry_advertise` are site-specific and can't be

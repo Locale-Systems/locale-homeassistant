@@ -15,7 +15,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.5.16"
+version: "0.6.0"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -64,6 +64,7 @@ options:
   sntp_advertise: ""
   telemetry_advertise: ""
   platform_url: "https://api.localesystems.com"
+  platform_mux_addr: ""
   telemetry_forward: true
 schema:
   log_level: "list(debug|info|warn|error)?"
@@ -85,6 +86,14 @@ schema:
   #   and reads the firmware registry; no platform credential is stored
   #   here or in the integration. Empty = no OTA.
   platform_url: "str?"
+  # platform_mux_addr: the platform's LMUX ingress endpoint (host:port,
+  #   e.g. "api.localesystems.com:9443") — the raw-TLS mux port the add-on
+  #   dials for its persistent cloud tunnel (roster registration + remote
+  #   entity/management requests), authenticated by its role:ha carrier
+  #   identity. Sits beside platform_url (same hostname, dedicated mux
+  #   port). Empty = the cloud tunnel leg is disabled; firmware/OTA via
+  #   platform_url is unaffected.
+  platform_mux_addr: "str?"
   # telemetry_forward: forward device telemetry to the Locale cloud under a
   #   home-token (HA-bridged tier). Only takes effect once this Home is
   #   connected to the cloud from the iOS app (an HA service credential is

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+- Flip both tunnel legs from tunnelwire-over-WebSocket onto LMUX (#56)
+
 ## 0.5.16
 
 - deps: locale-go-common b654af2 (streamChunkSize 32K for device PSRAM)
