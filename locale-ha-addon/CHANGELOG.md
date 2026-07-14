@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.4
+
+- cloudtunnel: validate the platform against the Locale CA root
+
 ## 0.6.3
 
 - devtunnel: present the role:ha carrier leaf, not the server cert
