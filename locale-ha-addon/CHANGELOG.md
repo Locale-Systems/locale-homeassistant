@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.6
+
+- test(cloudtrust): assert the embedded Locale root is valid, not a placeholder
+
+## 0.6.5
+
+- Add root certificate
+
 ## 0.6.4
 
 - cloudtunnel: validate the platform against the Locale CA root
