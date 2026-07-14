@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.7
+
+- firmware: run the shared orchestrator; accept a flash COMMAND from the cloud
+- api: serve the flash COMMAND on the LAN mobile edge too
+
 ## 0.6.6
 
 - test(cloudtrust): assert the embedded Locale root is valid, not a placeholder
