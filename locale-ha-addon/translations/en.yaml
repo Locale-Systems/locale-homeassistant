@@ -1,0 +1,33 @@
+configuration:
+  log_level:
+    name: Log level
+    description: Add-on logging verbosity.
+  sntp_advertise:
+    name: NTP advertise (host:port)
+    description: >-
+      Point adopted devices at this add-on as their NTP server, e.g.
+      "192.168.1.10:1123" — the HA host's LAN address, since the device
+      dials it (not localhost). Leave blank to not manage the device's NTP.
+      The recommended value for your network is printed in the add-on Log at
+      startup.
+  platform_url:
+    name: Platform URL
+    description: >-
+      Locale cloud base URL for firmware/OTA. Defaults to the Locale cloud;
+      override only for dev/self-host, or leave blank to disable OTA.
+  platform_mux_addr:
+    name: Remote access endpoint (host:port)
+    description: >-
+      The Locale cloud endpoint this add-on keeps a secure tunnel to for
+      remote access (reaching your devices from the Locale app when away
+      from home). Defaults to the Locale cloud and only activates after
+      you connect this Home to the cloud from the app. Override only for
+      dev/self-host.
+  telemetry_forward:
+    name: Forward telemetry to cloud
+    description: >-
+      Forward device telemetry to the Locale cloud once this Home is
+      connected to the cloud from the iOS app. Takes effect only after an HA
+      service credential is registered — with no credential nothing is
+      forwarded regardless. Turn off to keep telemetry local even after
+      connecting.

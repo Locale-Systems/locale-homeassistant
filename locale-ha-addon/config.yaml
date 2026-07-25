@@ -15,7 +15,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.6.7"
+version: "0.6.8"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -62,23 +62,18 @@ discovery:
 options:
   log_level: info
   sntp_advertise: ""
-  telemetry_advertise: ""
   platform_url: "https://api.localesystems.com"
-  platform_mux_addr: ""
+  platform_mux_addr: "tunnel.localesystems.com:9443"
   telemetry_forward: true
 schema:
   log_level: "list(debug|info|warn|error)?"
-  # When set, the add-on provisions each adopted device to use it.
   # sntp_advertise: host:port the device should use as its ntp_server
-  #   (the add-on's SNTP server) — e.g. "192.168.1.10:1123".
-  # telemetry_advertise: https URL the device should post telemetry to
-  #   (the add-on's telemetry hub) + telemetry_root_tls=true — e.g.
-  #   "https://192.168.1.10:8443". Use the HA host's LAN address (the
-  #   DEVICE dials it), not localhost. Empty = leave the device's own
-  #   NTP/telemetry config untouched. Can't be defaulted (site-specific);
-  #   the add-on logs the recommended values for your network at startup.
+  #   (the add-on's SNTP server) — e.g. "192.168.1.10:1123". Use the HA
+  #   host's LAN address (the DEVICE dials it), not localhost. Empty =
+  #   leave the device's NTP config untouched. Can't be defaulted
+  #   (site-specific); the add-on logs the recommended value at startup.
+  #   (telemetry_advertise retired — telemetry rides the device tunnel.)
   sntp_advertise: "str?"
-  telemetry_advertise: "str?"
   # platform_url: Locale cloud base URL. Defaults to the Locale cloud
   #   ("https://api.localesystems.com") so firmware/OTA works out of the
   #   box — override only for dev/self-host. The add-on mints a
@@ -86,13 +81,15 @@ schema:
   #   and reads the firmware registry; no platform credential is stored
   #   here or in the integration. Empty = no OTA.
   platform_url: "str?"
-  # platform_mux_addr: the platform's LMUX ingress endpoint (host:port,
-  #   e.g. "api.localesystems.com:9443") — the raw-TLS mux port the add-on
-  #   dials for its persistent cloud tunnel (roster registration + remote
-  #   entity/management requests), authenticated by its role:ha carrier
-  #   identity. Sits beside platform_url (same hostname, dedicated mux
-  #   port). Empty = the cloud tunnel leg is disabled; firmware/OTA via
-  #   platform_url is unaffected.
+  # platform_mux_addr: the platform's LMUX ingress endpoint (host:port) —
+  #   the raw-TLS mux port the add-on dials for its persistent cloud tunnel
+  #   (roster registration + remote entity/management requests),
+  #   authenticated by its role:ha carrier identity. Defaults to the
+  #   production ingress ("tunnel.localesystems.com:9443", must match
+  #   internal/config DefaultPlatformMuxAddr) so remote access works out of
+  #   the box — the tunnel is inert until the Home is enrolled anyway.
+  #   Override only for dev/self-host; firmware/OTA via platform_url is
+  #   unaffected either way.
   platform_mux_addr: "str?"
   # telemetry_forward: forward device telemetry to the Locale cloud under a
   #   home-token (HA-bridged tier). Only takes effect once this Home is

@@ -106,7 +106,7 @@ authenticates the connection against the Root it already anchors. The device
 edge is **mandatory mTLS**; the old per-request bearer path is retired on
 both device and add-on.
 
-**Server TLS leaf.** The telemetry hub and the mobile mTLS edge are served
+**Server TLS leaf.** The mobile mTLS edge is served
 with a certificate keyed to that same `role:ha` key. It is **self-signed**
 until enrollment delivers a **Root-signed X.509 leaf**, which then replaces it
 live (no restart). Devices validate it against the installation Root anchor
@@ -181,10 +181,9 @@ Host networking is required. Ports:
 | 8099/tcp | HTTP | Local API for the integration (bearer-gated) |
 | 8076/tcp | HTTP | LAN-direct grant receiver (arm-gated; ECIES-sealed) |
 | 8100/tcp | HTTPS | Mobile→add-on mTLS API (owner client cert) |
-| 8443/tcp | HTTPS | Telemetry receiver (Root-validated) |
 | 1123/udp | SNTP | Device time service (Internet-Disabled tier) |
 
-The setup UI, onboard receiver, and telemetry/mobile ports are also
+The setup UI, onboard receiver, and mobile ports are also
 advertised over mDNS (`_locale-onboard._tcp` while armed;
 `_locale-addon._tcp` and `_locale-relay._tcp` persistently) so phones and the
 integration find the add-on without a typed address.
@@ -197,14 +196,13 @@ integration find the add-on without a typed address.
 |--------|---------|-------------|
 | `log_level` | `info` | `debug` / `info` / `warn` / `error`. |
 | `sntp_advertise` | *(blank)* | `host:port` to hand adopted devices as their NTP server, e.g. `192.168.1.10:1123` — the HA host's LAN address (the device dials it). Blank = leave device NTP untouched. |
-| `telemetry_advertise` | *(blank)* | `https://host:port` to point adopted devices' telemetry at this add-on, e.g. `https://192.168.1.10:8443`. Blank = devices post direct. |
 | `platform_url` | Locale cloud | Cloud base URL for firmware/OTA. Override for dev/self-host; blank disables OTA. |
-| `platform_mux_addr` | *(blank)* | Platform LMUX ingress endpoint (`host:port`, e.g. `api.localesystems.com:9443`) for the persistent cloud tunnel (remote access tier). Blank = cloud tunnel disabled; OTA via `platform_url` is unaffected. |
+| `platform_mux_addr` | `tunnel.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) for the persistent cloud tunnel (remote access tier); the tunnel also carries device telemetry to the add-on. Override for dev/self-host; OTA via `platform_url` is separate. |
 | `telemetry_forward` | `true` | Forward device telemetry to the cloud under a home-token (only takes effect once the Home is cloud-connected). Set false to keep telemetry local. |
 
-`sntp_advertise` / `telemetry_advertise` are site-specific and can't be
-defaulted — the add-on logs the recommended values for your network at
-startup, ready to copy into the Configuration tab.
+`sntp_advertise` is site-specific and can't be defaulted — the add-on
+logs the recommended value for your network at startup, ready to copy
+into the Configuration tab.
 
 ---
 

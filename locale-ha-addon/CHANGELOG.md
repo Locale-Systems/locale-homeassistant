@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.8
+
+- config: default platform_mux_addr to production; publish translations
+- telemetry: consume the device TELEMETRY stream at register (§8b)
+- telemetry: delete the HTTPS receiver + telemetry_advertise (Ph4)
+
 ## 0.6.7
 
 - firmware: run the shared orchestrator; accept a flash COMMAND from the cloud
