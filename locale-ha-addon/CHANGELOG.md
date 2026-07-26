@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.10
+
+- telemetry: forward the device's factory certificate with each envelope
+
 ## 0.6.9
 
 - cloud: report held credential state over GET /cloud/status
