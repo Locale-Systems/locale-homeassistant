@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.12
+
+- telemetry: drain the durable log over an acked cloud-tunnel stream
+
 ## 0.6.11
 
 - telemetry: classify the platform's refusal codes as drop or defer
