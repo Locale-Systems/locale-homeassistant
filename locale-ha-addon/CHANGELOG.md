@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.9
+
+- cloud: report held credential state over GET /cloud/status
+
 ## 0.6.8
 
 - config: default platform_mux_addr to production; publish translations
