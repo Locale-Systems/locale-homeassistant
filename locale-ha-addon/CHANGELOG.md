@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.11
+
+- telemetry: classify the platform's refusal codes as drop or defer
+
 ## 0.6.10
 
 - telemetry: forward the device's factory certificate with each envelope
