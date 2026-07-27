@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.16
+
+- onboarding: drop the retired credential fields from the grant codec
+
 ## 0.6.15
 
 - config: apply the 7-day telemetry retention default
