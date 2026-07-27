@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.13
+
+- retire the cloud credential plane and the HTTP telemetry forwarder
+- retire the /cloud API surface and the stored credential id
+
 ## 0.6.12
 
 - telemetry: drain the durable log over an acked cloud-tunnel stream
