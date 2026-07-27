@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.15
+
+- config: apply the 7-day telemetry retention default
+
 ## 0.6.14
 
 - telemetry: segment the local log and expire it on a time limit
