@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.14
+
+- telemetry: segment the local log and expire it on a time limit
+
 ## 0.6.13
 
 - retire the cloud credential plane and the HTTP telemetry forwarder

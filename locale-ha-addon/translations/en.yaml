@@ -26,8 +26,13 @@ configuration:
   telemetry_forward:
     name: Forward telemetry to cloud
     description: >-
-      Forward device telemetry to the Locale cloud once this Home is
-      connected to the cloud from the iOS app. Takes effect only after an HA
-      service credential is registered — with no credential nothing is
-      forwarded regardless. Turn off to keep telemetry local even after
-      connecting.
+      Send device telemetry to the Locale cloud once this Home is connected
+      from the iOS app. Turn off to keep telemetry entirely local — the add-on
+      keeps recording either way, and turning it back on resumes from where it
+      left off rather than skipping the gap.
+  telemetry_retention_days:
+    name: Keep telemetry for (days)
+    description: >-
+      How long this add-on keeps device telemetry on disk. Older records are
+      deleted automatically. Set 0 to keep everything forever — only do that
+      if you intend to archive it, since the log grows without limit.
