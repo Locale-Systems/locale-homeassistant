@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.18
+
+- cloudtunnel: address home-scoped streams by installation_id
+
 ## 0.6.17
 
 - cloud tunnel: idle on "not linked to an account" instead of backing off
