@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.17
+
+- cloud tunnel: idle on "not linked to an account" instead of backing off
+
 ## 0.6.16
 
 - onboarding: drop the retired credential fields from the grant codec
