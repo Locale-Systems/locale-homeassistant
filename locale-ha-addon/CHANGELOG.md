@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.0
+
+- LMUX v2 cutover: bump go-common + contracts; 64 KiB telemetry grant
+- Bump go-common to 2238a74 — mux write-completion fix
+
 ## 0.6.19
 
 - telemetry: decouple the send pointer from the ack cursor; drain all acks
