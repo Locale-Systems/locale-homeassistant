@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.19
+
+- telemetry: decouple the send pointer from the ack cursor; drain all acks
+
 ## 0.6.18
 
 - cloudtunnel: address home-scoped streams by installation_id
