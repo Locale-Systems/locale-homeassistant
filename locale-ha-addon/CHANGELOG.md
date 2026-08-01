@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.1
+
+- refactor(devices): forward the whole SetValueRequest instead of its parts (#71)
+
 ## 0.7.0
 
 - LMUX v2 cutover: bump go-common + contracts; 64 KiB telemetry grant
