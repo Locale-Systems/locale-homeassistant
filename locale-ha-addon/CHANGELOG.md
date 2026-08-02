@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.2
+
+- perf: cross-compile the arm64 image instead of emulating the build
+- feat(waterguru): auth + fetch spike — SRP, SigV4, and a scrubbed golden capture
+- feat(waterguru): parse getDashboardView into a domain model
+- fix(waterguru): temperature is Fahrenheit, measDoseTimes is UTC
+- feat(chemistry): poll WaterGuru and write readings to the mapped device
+
 ## 0.7.1
 
 - refactor(devices): forward the whole SetValueRequest instead of its parts (#71)
