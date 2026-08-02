@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.3
+
+- fix(chemistry): retry device resolution alongside delivery
+
 ## 0.7.2
 
 - perf: cross-compile the arm64 image instead of emulating the build
