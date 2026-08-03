@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.4
+
+- refactor(chemistry): a file seam between fetching and writing
+
 ## 0.7.3
 
 - fix(chemistry): retry device resolution alongside delivery
