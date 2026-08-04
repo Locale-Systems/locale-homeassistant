@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.6
+
+- feat(platform): tokenless firmware registry reads
+
 ## 0.7.5
 
 - fix(chemistry): send the source attribute with the value
