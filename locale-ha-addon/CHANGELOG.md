@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0
+
+- feat(config): explicit feature switches, displayed defaults, injectable default source
+- ci: mint sibling tokens from the GitHub App, retiring the PAT (#79)
+- feat(config): rename platform mux ingress to mux.localesystems.com
+
 ## 0.7.6
 
 - feat(platform): tokenless firmware registry reads

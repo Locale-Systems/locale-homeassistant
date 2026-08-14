@@ -151,23 +151,31 @@ run the grant exchange described above with the iOS app.
 ## Cloud tier (optional)
 
 The add-on works fully offline — it is an always-on local hub with no cloud
-dependency. Two optional cloud behaviors light up only when you connect the
-Home to the Locale cloud from the iOS app:
+dependency. Each cloud behavior has its own on/off switch in the
+Configuration tab and lights up only when you connect the Home to the
+Locale cloud from the iOS app:
 
-- **Firmware / OTA:** if `platform_url` is set (it defaults to the Locale
-  cloud), the add-on reads the firmware registry and can offer OTA. It mints
-  its own device-scoped provision token — no platform credential is stored in
-  the add-on or the integration. Leave `platform_url` blank to disable.
-- **Remote access (cloud tunnel):** if `platform_mux_addr` is set, the add-on
-  holds one persistent LMUX session to the platform's mux ingress
-  (authenticated by its role:ha carrier identity once the Home is enrolled)
-  and serves remote entity/management requests relayed down it. Blank
-  disables the remote tier.
-- **Telemetry forwarding:** with `telemetry_forward` on **and** an HA service
-  credential registered, the add-on drains its local telemetry store to the
-  cloud under a home-token (the HA-bridged tier). With no credential nothing
-  forwards regardless, so this is opt-in by connecting the Home. Set
-  `telemetry_forward` false to keep telemetry local even after connecting.
+- **Firmware / OTA** (`ota_enabled`, default on): the add-on reads the
+  firmware registry at `platform_url` and can offer OTA. It mints its own
+  device-scoped provision token — no platform credential is stored in the
+  add-on or the integration. Switch off for installed-only firmware.
+- **Remote access (cloud tunnel)** (`remote_access_enabled`, default on):
+  the add-on holds one persistent LMUX session to the platform's mux
+  ingress at `platform_mux_addr` (authenticated by its role:ha carrier
+  identity once the Home is enrolled) and serves remote entity/management
+  requests relayed down it. Switching it off also stops telemetry
+  forwarding, which rides this tunnel.
+- **Telemetry forwarding** (`telemetry_forward`, default on): with the
+  switch on, remote access on, **and** an HA service credential
+  registered, the add-on drains its local telemetry store to the cloud
+  under a home-token (the HA-bridged tier). With no credential nothing
+  forwards regardless, so this is opt-in by connecting the Home. Switch
+  off to keep telemetry local even after connecting.
+
+> **Upgrading from older versions:** leaving `platform_url` or
+> `platform_mux_addr` blank used to be the documented way to disable OTA /
+> remote access. A blank endpoint now just means "use the Locale cloud
+> default" — use the switches above to turn features off.
 
 ---
 
@@ -192,17 +200,31 @@ integration find the add-on without a typed address.
 
 ## Options
 
+Every option has a working default — a stock install needs no
+configuration. Features are enabled/disabled by the boolean switches;
+the endpoint values are just that, values (blank = the default shown).
+
 | Option | Default | Description |
 |--------|---------|-------------|
 | `log_level` | `info` | `debug` / `info` / `warn` / `error`. |
-| `sntp_advertise` | *(blank)* | `host:port` to hand adopted devices as their NTP server, e.g. `192.168.1.10:1123` — the HA host's LAN address (the device dials it). Blank = leave device NTP untouched. |
-| `platform_url` | Locale cloud | Cloud base URL for firmware/OTA. Override for dev/self-host; blank disables OTA. |
-| `platform_mux_addr` | `tunnel.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) for the persistent cloud tunnel (remote access tier); the tunnel also carries device telemetry to the add-on. Override for dev/self-host; OTA via `platform_url` is separate. |
+| `ota_enabled` | `true` | Firmware/OTA surface. Off = firmware is installed-only; the registry is never contacted. |
+| `platform_url` | `https://api.localesystems.com` | Cloud base URL for firmware/OTA. Override for dev/self-host; blank = the default. |
+| `remote_access_enabled` | `true` | Cloud tunnel (remote tier). Off also stops telemetry forwarding, which rides the tunnel. |
+| `platform_mux_addr` | `mux.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) the tunnel dials. Override for dev/self-host; blank = the default. |
 | `telemetry_forward` | `true` | Forward device telemetry to the cloud under a home-token (only takes effect once the Home is cloud-connected). Set false to keep telemetry local. |
+| `telemetry_retention_days` | `7` | How long device telemetry is kept on disk. `0` = keep forever (choose deliberately — the log grows without limit). |
+| `ntp_provision_enabled` | `true` | Point adopted devices at this add-on as their NTP server (the Internet-Disabled tier's clock). Off = devices keep their own NTP config. |
+| `sntp_advertise` | *(blank = auto)* | Override for the advertised `host:port`. Blank derives it from the host's LAN IP + the SNTP port; set it only if the derivation picks the wrong interface (multi-NIC hosts). The device dials it, so never localhost. |
 
-`sntp_advertise` is site-specific and can't be defaulted — the add-on
-logs the recommended value for your network at startup, ready to copy
-into the Configuration tab.
+## Water chemistry (WaterGuru)
+
+The WaterGuru connector is configured from the add-on's **web UI** (the
+Locale Pairing panel / `http://locale.local:8088`), not from the options
+above — it needs your WaterGuru sign-in, and a password does not belong
+in the add-on configuration. Enter the account there and the hub fetches
+water chemistry about once a day; remove the credentials there to turn
+the connector off. The sign-in is stored only on this hub, in a file
+readable by nothing else, and can't be read back out of the page.
 
 ---
 

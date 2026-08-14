@@ -15,7 +15,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.7.6"
+version: "0.8.0"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -59,38 +59,57 @@ discovery:
 # file directly and overlays it on the env defaults (no entrypoint shim).
 # SUPERVISOR_TOKEN is injected as env regardless, so token-mode detection
 # works independently.
+#
+# Two rules, enforced by internal/config's manifest tests:
+#   - Features are gated by the *_enabled booleans, never by whether a
+#     value is set. Blanking an endpoint means "use the default", not
+#     "disable" (that used to be the documented disable path — it isn't
+#     any more).
+#   - Every option's default below is exactly what config.Load() resolves
+#     with no overrides, and the endpoint defaults equal the
+#     build-injectable values in internal/defaults. This block is what
+#     the HA config page displays.
+#
+# Order is the HA config-page render order: each switch sits above the
+# value(s) it governs. Every schema entry stays optional ("?") — required
+# keys can fail Supervisor's validation of an existing install's saved
+# options on update; the Go side defaults every absent key anyway.
 options:
   log_level: info
-  sntp_advertise: ""
+  ota_enabled: true
   platform_url: "https://api.localesystems.com"
-  platform_mux_addr: "tunnel.localesystems.com:9443"
+  remote_access_enabled: true
+  platform_mux_addr: "mux.localesystems.com:9443"
   telemetry_forward: true
   telemetry_retention_days: 7
+  ntp_provision_enabled: true
+  sntp_advertise: ""
 schema:
   log_level: "list(debug|info|warn|error)?"
-  # sntp_advertise: host:port the device should use as its ntp_server
-  #   (the add-on's SNTP server) — e.g. "192.168.1.10:1123". Use the HA
-  #   host's LAN address (the DEVICE dials it), not localhost. Empty =
-  #   leave the device's NTP config untouched. Can't be defaulted
-  #   (site-specific); the add-on logs the recommended value at startup.
-  #   (telemetry_advertise retired — telemetry rides the device tunnel.)
-  sntp_advertise: "str?"
+  # ota_enabled: the firmware/OTA surface. Off = firmware reads report
+  #   installed-only and installs are rejected; the platform registry is
+  #   never contacted.
+  ota_enabled: "bool?"
   # platform_url: Locale cloud base URL. Defaults to the Locale cloud
-  #   ("https://api.localesystems.com") so firmware/OTA works out of the
-  #   box — override only for dev/self-host. The add-on mints a
-  #   device-scoped provision token from it (same open mechanism iOS uses)
-  #   and reads the firmware registry; no platform credential is stored
-  #   here or in the integration. Empty = no OTA.
+  #   so firmware/OTA works out of the box — override only for
+  #   dev/self-host. The add-on mints a device-scoped provision token
+  #   from it (same open mechanism iOS uses) and reads the firmware
+  #   registry; no platform credential is stored here or in the
+  #   integration. Blank = the default; ota_enabled is the off switch.
   platform_url: "str?"
+  # remote_access_enabled: the cloud tunnel (remote tier). Off = the
+  #   add-on never dials the platform's mux ingress; telemetry
+  #   forwarding, which rides the tunnel, stops too. Firmware/OTA is
+  #   independent.
+  remote_access_enabled: "bool?"
   # platform_mux_addr: the platform's LMUX ingress endpoint (host:port) —
   #   the raw-TLS mux port the add-on dials for its persistent cloud tunnel
   #   (roster registration + remote entity/management requests),
   #   authenticated by its role:ha carrier identity. Defaults to the
-  #   production ingress ("tunnel.localesystems.com:9443", must match
-  #   internal/config DefaultPlatformMuxAddr) so remote access works out of
-  #   the box — the tunnel is inert until the Home is enrolled anyway.
-  #   Override only for dev/self-host; firmware/OTA via platform_url is
-  #   unaffected either way.
+  #   production ingress so remote access works out of the box — the
+  #   tunnel is inert until the Home is enrolled anyway. Override only
+  #   for dev/self-host. Blank = the default; remote_access_enabled is
+  #   the off switch.
   platform_mux_addr: "str?"
   # telemetry_forward: send stored device telemetry to the Locale cloud over
   #   the add-on's cloud tunnel. Set false to keep telemetry entirely local —
@@ -103,3 +122,15 @@ schema:
   #   choose that deliberately (e.g. you intend to archive locally), not by
   #   accident.
   telemetry_retention_days: "int(0,)?"
+  # ntp_provision_enabled: point adopted devices at this add-on as their
+  #   time source — the add-on provisions each adopted device's
+  #   ntp_server (the Internet-Disabled tier's clock). Off = devices keep
+  #   their own NTP config.
+  ntp_provision_enabled: "bool?"
+  # sntp_advertise: override for the advertised ntp_server value
+  #   (host:port), e.g. "192.168.1.10:1123". Use the HA host's LAN
+  #   address (the DEVICE dials it), not localhost. Blank = derived from
+  #   the host's LAN IP + the SNTP port; set it only when the derivation
+  #   picks the wrong interface (multi-NIC hosts). Only used while
+  #   ntp_provision_enabled is on.
+  sntp_advertise: "str?"
