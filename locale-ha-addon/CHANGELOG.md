@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.1
+
+- defaults: Locale endpoints come from the locale-contracts environment matrix (#81)
+- cloudtrust: anchor the rebirth root alongside the legacy one (#82)
+
 ## 0.8.0
 
 - feat(config): explicit feature switches, displayed defaults, injectable default source
