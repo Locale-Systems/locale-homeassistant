@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2
+
+- Quieter INFO log + measurement-anchored WaterGuru polling (#83)
+- Claude/addon info log review 0vftmt (#84)
+
 ## 0.8.1
 
 - defaults: Locale endpoints come from the locale-contracts environment matrix (#81)

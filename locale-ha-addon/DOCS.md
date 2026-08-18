@@ -206,7 +206,7 @@ the endpoint values are just that, values (blank = the default shown).
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `log_level` | `info` | `debug` / `info` / `warn` / `error`. |
+| `log_level` | `info` | `debug` / `info` / `warn` / `error`. At `info` the log carries startup/shutdown, configuration changes, and rare events (pairing, adoption, firmware installs); per-request and per-device tracing (mobile mTLS handshakes/requests, relayed calls, device tunnel connect/disconnect) lives at `debug`. |
 | `ota_enabled` | `true` | Firmware/OTA surface. Off = firmware is installed-only; the registry is never contacted. |
 | `platform_url` | `https://api.localesystems.com` | Cloud base URL for firmware/OTA. Override for dev/self-host; blank = the default. |
 | `remote_access_enabled` | `true` | Cloud tunnel (remote tier). Off also stops telemetry forwarding, which rides the tunnel. |
