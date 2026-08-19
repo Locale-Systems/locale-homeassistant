@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.4
+
+- ci: run all workflows on runner-linux-1 (#86)
+
 ## 0.8.3
 
 - Setup UI: "Poll now" fetches a WaterGuru reading on demand (#85)
