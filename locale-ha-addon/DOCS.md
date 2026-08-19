@@ -226,6 +226,14 @@ water chemistry about once a day; remove the credentials there to turn
 the connector off. The sign-in is stored only on this hub, in a file
 readable by nothing else, and can't be read back out of the page.
 
+The hub follows the pod's own daily test time. If you run a test by hand
+from the WaterGuru app — after the pump was off when the scheduled one
+fired, say — press **Poll now** on the same page to fetch it rather than
+waiting for tomorrow. It reads what WaterGuru already has (it never starts
+a test), and each poll counts toward the daily sign-in limit the hub
+keeps to protect your WaterGuru account; once that is spent the button
+says when the next poll can run.
+
 ---
 
 ## Data directory

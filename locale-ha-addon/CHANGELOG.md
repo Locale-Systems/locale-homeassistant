@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.3
+
+- Setup UI: "Poll now" fetches a WaterGuru reading on demand (#85)
+
 ## 0.8.2
 
 - Quieter INFO log + measurement-anchored WaterGuru polling (#83)
