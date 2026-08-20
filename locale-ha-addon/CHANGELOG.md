@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.5
+
+- cloudtrust: drop the pre-rebirth root from the embedded bundle (#87)
+- release: clear the previous run's public clone before cloning (#88)
+
 ## 0.8.4
 
 - ci: run all workflows on runner-linux-1 (#86)
