@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.6
+
+- devices: prune the previous Home's roster on a Root swap (§8 task 21) (#89)
+
 ## 0.8.5
 
 - cloudtrust: drop the pre-rebirth root from the embedded bundle (#87)
