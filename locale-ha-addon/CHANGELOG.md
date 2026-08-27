@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+- chemistry: typed source_type on reading writes; WaterGuru stamps sensor (#90)
+
 ## 0.8.6
 
 - devices: prune the previous Home's roster on a Root swap (§8 task 21) (#89)
