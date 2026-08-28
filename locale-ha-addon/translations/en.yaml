@@ -58,8 +58,9 @@ configuration:
     description: >-
       Listen for a WeatherFlow Tempest station on your network and record
       its weather beside your pool telemetry in the Locale cloud. Passive —
-      does nothing unless a station is broadcasting. Works alongside Home
-      Assistant's own WeatherFlow integration.
+      does nothing unless a station is broadcasting. Note: Home Assistant's
+      own WeatherFlow integration holds the same port exclusively — disable
+      it to let this listener collect (it takes over automatically).
   weather_station_filter:
     name: Weather station filter (serial)
     description: >-

@@ -176,9 +176,12 @@ Locale cloud from the iOS app:
   broadcast (UDP `:50222`) and records its observations into the same
   local telemetry log, forwarded to the cloud beside device telemetry so
   weather sits next to pool data in reports. Costs nothing when no
-  station broadcasts, and shares the port cleanly with Home Assistant's
-  own WeatherFlow integration. Forwarding respects `telemetry_forward`
-  and rides the remote-access tunnel like everything else.
+  station broadcasts. **Port note:** Home Assistant's own WeatherFlow
+  integration binds the same UDP port without port sharing, so the two
+  cannot listen at once — disable that integration to collect here (the
+  listener retries and takes over as soon as the port frees). Forwarding
+  respects `telemetry_forward` and rides the remote-access tunnel like
+  everything else.
 
 > **Upgrading from older versions:** leaving `platform_url` or
 > `platform_mux_addr` blank used to be the documented way to disable OTA /

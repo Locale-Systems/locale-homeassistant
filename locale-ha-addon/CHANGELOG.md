@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.2
+
+- weather: retry the listener with backoff; correct the coexistence claim (#92)
+
 ## 0.9.1
 
 - weather: Tempest local collector + home-scoped acked drain (step 3) (#91)
