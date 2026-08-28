@@ -171,6 +171,14 @@ Locale cloud from the iOS app:
   under a home-token (the HA-bridged tier). With no credential nothing
   forwards regardless, so this is opt-in by connecting the Home. Switch
   off to keep telemetry local even after connecting.
+- **Weather station (Tempest)** (`weather_enabled`, default on): the
+  add-on passively listens for a WeatherFlow Tempest station's LAN
+  broadcast (UDP `:50222`) and records its observations into the same
+  local telemetry log, forwarded to the cloud beside device telemetry so
+  weather sits next to pool data in reports. Costs nothing when no
+  station broadcasts, and shares the port cleanly with Home Assistant's
+  own WeatherFlow integration. Forwarding respects `telemetry_forward`
+  and rides the remote-access tunnel like everything else.
 
 > **Upgrading from older versions:** leaving `platform_url` or
 > `platform_mux_addr` blank used to be the documented way to disable OTA /
@@ -213,6 +221,8 @@ the endpoint values are just that, values (blank = the default shown).
 | `platform_mux_addr` | `mux.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) the tunnel dials. Override for dev/self-host; blank = the default. |
 | `telemetry_forward` | `true` | Forward device telemetry to the cloud under a home-token (only takes effect once the Home is cloud-connected). Set false to keep telemetry local. |
 | `telemetry_retention_days` | `7` | How long device telemetry is kept on disk. `0` = keep forever (choose deliberately — the log grows without limit). |
+| `weather_enabled` | `true` | Listen for a WeatherFlow Tempest station's LAN broadcast and record its weather beside your pool telemetry. Passive; does nothing without a station. |
+| `weather_station_filter` | *(blank = all)* | Restrict weather collection to one station serial (e.g. `ST-00012345`). Blank collects every station heard. |
 | `ntp_provision_enabled` | `true` | Point adopted devices at this add-on as their NTP server (the Internet-Disabled tier's clock). Off = devices keep their own NTP config. |
 | `sntp_advertise` | *(blank = auto)* | Override for the advertised `host:port`. Blank derives it from the host's LAN IP + the SNTP port; set it only if the derivation picks the wrong interface (multi-NIC hosts). The device dials it, so never localhost. |
 

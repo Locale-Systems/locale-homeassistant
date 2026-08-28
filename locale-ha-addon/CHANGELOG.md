@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1
+
+- weather: Tempest local collector + home-scoped acked drain (step 3) (#91)
+
 ## 0.9.0
 
 - chemistry: typed source_type on reading writes; WaterGuru stamps sensor (#90)

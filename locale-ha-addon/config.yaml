@@ -15,7 +15,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.9.0"
+version: "0.9.1"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -82,6 +82,8 @@ options:
   platform_mux_addr: "mux.localesystems.com:9443"
   telemetry_forward: true
   telemetry_retention_days: 7
+  weather_enabled: true
+  weather_station_filter: ""
   ntp_provision_enabled: true
   sntp_advertise: ""
 schema:
@@ -122,6 +124,16 @@ schema:
   #   choose that deliberately (e.g. you intend to archive locally), not by
   #   accident.
   telemetry_retention_days: "int(0,)?"
+  # weather_enabled: listen for a WeatherFlow Tempest station's LAN
+  #   broadcast (UDP :50222, passive) and record its observations into the
+  #   telemetry log, forwarded to the Locale cloud beside device telemetry.
+  #   Costs nothing when no station broadcasts. Forwarding also respects
+  #   telemetry_forward and rides the remote-access tunnel.
+  weather_enabled: "bool?"
+  # weather_station_filter: restrict weather collection to one station
+  #   serial (e.g. "ST-00012345"). Blank = collect every Tempest station
+  #   heard on the network. Purely a value; weather_enabled is the switch.
+  weather_station_filter: "str?"
   # ntp_provision_enabled: point adopted devices at this add-on as their
   #   time source — the add-on provisions each adopted device's
   #   ntp_server (the Internet-Disabled tier's clock). Off = devices keep

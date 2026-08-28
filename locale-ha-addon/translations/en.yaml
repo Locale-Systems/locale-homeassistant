@@ -53,3 +53,16 @@ configuration:
       host's LAN address automatically (e.g. "192.168.1.10:1123"). Set it
       only if the automatic choice picks the wrong network interface —
       the value must be reachable from the devices, so never localhost.
+  weather_enabled:
+    name: Weather station (Tempest)
+    description: >-
+      Listen for a WeatherFlow Tempest station on your network and record
+      its weather beside your pool telemetry in the Locale cloud. Passive —
+      does nothing unless a station is broadcasting. Works alongside Home
+      Assistant's own WeatherFlow integration.
+  weather_station_filter:
+    name: Weather station filter (serial)
+    description: >-
+      Only used while "Weather station (Tempest)" is on. Leave blank to
+      collect every Tempest station heard on the network; set a station
+      serial (e.g. "ST-00012345") to collect just that one.
