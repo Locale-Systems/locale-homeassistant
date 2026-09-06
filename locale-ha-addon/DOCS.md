@@ -151,82 +151,70 @@ run the grant exchange described above with the iOS app.
 ## Cloud tier (optional)
 
 The add-on works fully offline — it is an always-on local hub with no cloud
-dependency. Each cloud behavior has its own on/off switch in the
-Configuration tab and lights up only when you connect the Home to the
-Locale cloud from the iOS app:
+dependency. Whether this Home shares anything with Locale Cloud is decided
+in ONE place: the **Locale Cloud** switch in the Locale app on the owner's
+phone. The app writes this hub's configuration over your home network
+(`/data/home_config.json`); nothing about cloud behavior is configured here
+in Home Assistant, and the platform never decides it either.
 
-- **Firmware / OTA** (`ota_enabled`, default on): the add-on reads the
-  firmware registry at `platform_url` and can offer OTA. It mints its own
-  device-scoped provision token — no platform credential is stored in the
-  add-on or the integration. Switch off for installed-only firmware.
-- **Remote access (cloud tunnel)** (`remote_access_enabled`, default on):
-  the add-on holds one persistent LMUX session to the platform's mux
-  ingress at `platform_mux_addr` (authenticated by its role:ha carrier
-  identity once the Home is enrolled) and serves remote entity/management
-  requests relayed down it. Switching it off also stops telemetry
-  forwarding, which rides this tunnel.
-- **Telemetry forwarding** (`telemetry_forward`, default on): with the
-  switch on, remote access on, **and** an HA service credential
-  registered, the add-on drains its local telemetry store to the cloud
-  under a home-token (the HA-bridged tier). With no credential nothing
-  forwards regardless, so this is opt-in by connecting the Home. Switch
-  off to keep telemetry local even after connecting.
-- **Weather station (Tempest)** (`weather_enabled`, default on): the
-  add-on passively listens for a WeatherFlow Tempest station's LAN
-  broadcast (UDP `:50222`) and records its observations into the same
-  local telemetry log, forwarded to the cloud beside device telemetry so
-  weather sits next to pool data in reports. Costs nothing when no
-  station broadcasts. **Port note:** Home Assistant's own WeatherFlow
-  integration binds the same UDP port without port sharing, so the two
-  cannot listen at once — disable that integration to collect here (the
-  listener retries and takes over as soon as the port frees). Forwarding
-  respects `telemetry_forward` and rides the remote-access tunnel like
-  everything else.
+With no configuration from the phone yet — a fresh install, or an upgrade
+from a version that kept these switches in HA — the add-on is **fail-closed**:
+it does not dial Locale Cloud, forwards no telemetry, and contacts no
+firmware registry. Open the Locale app on your home network and turn Locale
+Cloud on for the Home to enable them. The add-on log says so while it waits
+(`cloud tunnel idle: Locale Cloud is off for this Home`).
 
-> **Upgrading from older versions:** leaving `platform_url` or
-> `platform_mux_addr` blank used to be the documented way to disable OTA /
-> remote access. A blank endpoint now just means "use the Locale cloud
-> default" — use the switches above to turn features off.
+What the phone's configuration controls:
 
----
+- **Locale Cloud** (`cloud_consent`): the add-on holds one persistent LMUX
+  session to the platform's mux ingress at `platform_mux_addr`
+  (authenticated by its role:ha carrier identity once the Home is enrolled
+  and linked to a Locale account) and serves remote entity/management
+  requests relayed down it. Turning it off closes the session within a
+  second; telemetry forwarding and weather forwarding ride this tunnel and
+  stop with it. The platform ingests forwarded telemetry only for accounts
+  entitled to it (`telemetry.cloud_ingest`, an operator-side entitlement).
+- **Firmware updates** (`ota_enabled`, set with the Locale Cloud switch
+  today): the add-on reads the firmware registry at `platform_url` and can
+  offer OTA. It mints its own device-scoped provision token — no platform
+  credential is stored in the add-on or the integration.
+- **Weather station (Tempest)** (`weather_enabled`, default on): passive
+  listener for a WeatherFlow Tempest station's LAN broadcast (UDP `:50222`),
+  recorded into the local telemetry log and forwarded beside device
+  telemetry when Locale Cloud is on. **Port note:** Home Assistant's own
+  WeatherFlow integration binds the same UDP port without port sharing, so
+  the two cannot listen at once — disable that integration to collect here.
+- **Device time (NTP)** (`ntp_provision_enabled`, default on): adopted
+  devices are pointed at this add-on as their time source.
+- **Telemetry retention** (`telemetry_retention_days`, default 7).
 
-## Network
+Local-only features keep their defaults with no configuration; only the
+cloud-contacting ones wait for the owner's decision.
 
-Host networking is required. Ports:
+Re-pairing the hub under a different Home's Root drops the configuration:
+the new Home's owner decides afresh.
 
-| Port | Proto | Purpose |
-|------|-------|---------|
-| 8088/tcp | HTTP | Setup / pairing UI (also via Supervisor ingress) |
-| 8099/tcp | HTTP | Local API for the integration (bearer-gated) |
-| 8076/tcp | HTTP | LAN-direct grant receiver (arm-gated; ECIES-sealed) |
-| 8100/tcp | HTTPS | Mobile→add-on mTLS API (owner client cert) |
-| 1123/udp | SNTP | Device time service (Internet-Disabled tier) |
-
-The setup UI, onboard receiver, and mobile ports are also
-advertised over mDNS (`_locale-onboard._tcp` while armed;
-`_locale-addon._tcp` and `_locale-relay._tcp` persistently) so phones and the
-integration find the add-on without a typed address.
+> **Upgrading from older versions:** the `remote_access_enabled`,
+> `telemetry_forward`, `ota_enabled`, `weather_enabled`,
+> `ntp_provision_enabled` and `telemetry_retention_days` options are gone
+> from the Configuration tab; any values still saved there are ignored. The
+> Locale Cloud switch in the app replaces them. Until you turn it on, the hub
+> stays local-only — that is the intended posture, not a fault.
 
 ---
 
 ## Options
 
-Every option has a working default — a stock install needs no
-configuration. Features are enabled/disabled by the boolean switches;
-the endpoint values are just that, values (blank = the default shown).
+The Configuration tab carries only process diagnostics and dev/self-host
+endpoint VALUES — never a decision about the Home. Everything behavioral
+comes from the Locale app (see *Cloud tier*).
 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `log_level` | `info` | `debug` / `info` / `warn` / `error`. At `info` the log carries startup/shutdown, configuration changes, and rare events (pairing, adoption, firmware installs); per-request and per-device tracing (mobile mTLS handshakes/requests, relayed calls, device tunnel connect/disconnect) lives at `debug`. |
-| `ota_enabled` | `true` | Firmware/OTA surface. Off = firmware is installed-only; the registry is never contacted. |
-| `platform_url` | `https://api.localesystems.com` | Cloud base URL for firmware/OTA. Override for dev/self-host; blank = the default. |
-| `remote_access_enabled` | `true` | Cloud tunnel (remote tier). Off also stops telemetry forwarding, which rides the tunnel. |
-| `platform_mux_addr` | `mux.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) the tunnel dials. Override for dev/self-host; blank = the default. |
-| `telemetry_forward` | `true` | Forward device telemetry to the cloud under a home-token (only takes effect once the Home is cloud-connected). Set false to keep telemetry local. |
-| `telemetry_retention_days` | `7` | How long device telemetry is kept on disk. `0` = keep forever (choose deliberately — the log grows without limit). |
-| `weather_enabled` | `true` | Listen for a WeatherFlow Tempest station's LAN broadcast and record its weather beside your pool telemetry. Passive; does nothing without a station. |
+| `platform_url` | `https://api.localesystems.com` | Cloud base URL for firmware/OTA. Override for dev/self-host; blank = the default. Whether OTA runs is the app's decision. |
+| `platform_mux_addr` | `mux.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) the tunnel dials. Override for dev/self-host; blank = the default. Whether the tunnel dials is the app's Locale Cloud switch. |
 | `weather_station_filter` | *(blank = all)* | Restrict weather collection to one station serial (e.g. `ST-00012345`). Blank collects every station heard. |
-| `ntp_provision_enabled` | `true` | Point adopted devices at this add-on as their NTP server (the Internet-Disabled tier's clock). Off = devices keep their own NTP config. |
 | `sntp_advertise` | *(blank = auto)* | Override for the advertised `host:port`. Blank derives it from the host's LAN IP + the SNTP port; set it only if the derivation picks the wrong interface (multi-NIC hosts). The device dials it, so never localhost. |
 
 ## Water chemistry (WaterGuru)

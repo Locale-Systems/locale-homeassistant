@@ -1,69 +1,32 @@
 configuration:
   log_level:
     name: Log level
-    description: Add-on logging verbosity.
-  ota_enabled:
-    name: Firmware updates (OTA)
     description: >-
-      Let this add-on check the Locale cloud for device firmware and
-      install updates you approve. Turn off to make firmware
-      installed-only — no update checks, no cloud contact for firmware.
+      Add-on logging verbosity. Whether this Home shares anything with
+      Locale Cloud, firmware updates, the Tempest weather listener and device
+      time are decided in the Locale app on the owner's phone, not here.
   platform_url:
-    name: Platform URL
+    name: Platform URL (self-host)
     description: >-
-      Locale cloud base URL for firmware/OTA. Leave blank for the Locale
-      cloud default; change only for dev/self-host. Use the "Firmware
-      updates (OTA)" switch to turn OTA off.
-  remote_access_enabled:
-    name: Remote access
-    description: >-
-      Keep a secure tunnel to the Locale cloud so you can reach your
-      devices from the Locale app when away from home. Only activates
-      after you connect this Home to the cloud from the app. Turning it
-      off also stops telemetry forwarding, which rides this tunnel.
+      Locale cloud base URL for firmware updates. Leave blank for the Locale
+      cloud default; change only for dev/self-host. Whether firmware updates
+      run at all is decided in the Locale app.
   platform_mux_addr:
-    name: Remote access endpoint (host:port)
+    name: Cloud tunnel endpoint (self-host, host:port)
     description: >-
-      The Locale cloud endpoint the remote-access tunnel dials. Leave
-      blank for the Locale cloud default; change only for dev/self-host.
-      Use the "Remote access" switch to turn the tunnel off.
-  telemetry_forward:
-    name: Forward telemetry to cloud
-    description: >-
-      Send device telemetry to the Locale cloud once this Home is connected
-      from the iOS app. Turn off to keep telemetry entirely local — the add-on
-      keeps recording either way, and turning it back on resumes from where it
-      left off rather than skipping the gap.
-  telemetry_retention_days:
-    name: Keep telemetry for (days)
-    description: >-
-      How long this add-on keeps device telemetry on disk. Older records are
-      deleted automatically. Set 0 to keep everything forever — only do that
-      if you intend to archive it, since the log grows without limit.
-  ntp_provision_enabled:
-    name: Manage device time (NTP)
-    description: >-
-      Point your Locale devices at this add-on as their time source, so
-      they keep correct time even without internet access. Turn off to
-      leave each device's own NTP configuration untouched.
+      The Locale cloud endpoint the tunnel dials. Leave blank for the Locale
+      cloud default; change only for dev/self-host. Whether the tunnel dials
+      at all is the Home's Locale Cloud setting in the Locale app.
   sntp_advertise:
     name: NTP advertise override (host:port)
     description: >-
-      Only used while "Manage device time" is on. Leave blank to use this
-      host's LAN address automatically (e.g. "192.168.1.10:1123"). Set it
-      only if the automatic choice picks the wrong network interface —
-      the value must be reachable from the devices, so never localhost.
-  weather_enabled:
-    name: Weather station (Tempest)
-    description: >-
-      Listen for a WeatherFlow Tempest station on your network and record
-      its weather beside your pool telemetry in the Locale cloud. Passive —
-      does nothing unless a station is broadcasting. Note: Home Assistant's
-      own WeatherFlow integration holds the same port exclusively — disable
-      it to let this listener collect (it takes over automatically).
+      Leave blank to use this host's LAN address automatically. Set it only
+      if the automatic choice picks the wrong network interface — the value
+      must be reachable from the devices, so never localhost. Only used
+      while the Locale app has device time management on for this Home.
   weather_station_filter:
     name: Weather station filter (serial)
     description: >-
-      Only used while "Weather station (Tempest)" is on. Leave blank to
-      collect every Tempest station heard on the network; set a station
-      serial (e.g. "ST-00012345") to collect just that one.
+      Leave blank to collect every Tempest station heard on the network; set
+      a station serial (e.g. "ST-00012345") to collect just that one. Only
+      used while the Locale app has the weather listener on for this Home.

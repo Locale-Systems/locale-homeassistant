@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.0
+
+- Update port-sharing comments: reuse_port shipped upstream in pyweatherflowudp 1.6.0
+- docs: tag open work with the estate TODO convention (#93)
+- docs: TODO review 2026-09-03 (#94)
+- docs: mark the Tempest train complete; split out the real follow-ons (#95)
+- ci: sign the add-on store commits pushed to the public repo (#96)
+- Hub configuration comes from the owner's phone; fail-closed without it (#97)
+
 ## 0.9.2
 
 - weather: retry the listener with backoff; correct the coexistence claim (#92)
