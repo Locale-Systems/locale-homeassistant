@@ -205,17 +205,17 @@ the new Home's owner decides afresh.
 
 ## Options
 
-The Configuration tab carries only process diagnostics and dev/self-host
-endpoint VALUES — never a decision about the Home. Everything behavioral
-comes from the Locale app (see *Cloud tier*).
+`log_level` is the only option. Everything else about this hub is decided in
+the Locale app on the owner's phone (see *Cloud tier*); the platform
+endpoints are part of the build.
 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `log_level` | `info` | `debug` / `info` / `warn` / `error`. At `info` the log carries startup/shutdown, configuration changes, and rare events (pairing, adoption, firmware installs); per-request and per-device tracing (mobile mTLS handshakes/requests, relayed calls, device tunnel connect/disconnect) lives at `debug`. |
-| `platform_url` | `https://api.localesystems.com` | Cloud base URL for firmware/OTA. Override for dev/self-host; blank = the default. Whether OTA runs is the app's decision. |
-| `platform_mux_addr` | `mux.localesystems.com:9443` | Platform LMUX ingress endpoint (`host:port`) the tunnel dials. Override for dev/self-host; blank = the default. Whether the tunnel dials is the app's Locale Cloud switch. |
-| `weather_station_filter` | *(blank = all)* | Restrict weather collection to one station serial (e.g. `ST-00012345`). Blank collects every station heard. |
-| `sntp_advertise` | *(blank = auto)* | Override for the advertised `host:port`. Blank derives it from the host's LAN IP + the SNTP port; set it only if the derivation picks the wrong interface (multi-NIC hosts). The device dials it, so never localhost. |
+
+The **Locale Pairing** panel shows the Home's Locale Cloud state as the
+phone set it — "on", "off", or "waiting for the Locale app" for a hub the
+phone has not configured yet — next to the pairing controls.
 
 ## Water chemistry (WaterGuru)
 

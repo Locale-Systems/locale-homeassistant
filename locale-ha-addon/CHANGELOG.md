@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.1
+
+- HA keeps log_level only; LAN knobs ride the phone's document; page shows Locale Cloud (#98)
+- Config tests: options.json is not a source for endpoints (D1) (#99)
+
 ## 0.10.0
 
 - Update port-sharing comments: reuse_port shipped upstream in pyweatherflowudp 1.6.0

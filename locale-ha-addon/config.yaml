@@ -15,7 +15,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.10.0"
+version: "0.10.1"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -76,34 +76,15 @@ discovery:
 # options on update; the Go side defaults every absent key anyway.
 options:
   log_level: info
-  platform_url: "https://api.localesystems.com"
-  platform_mux_addr: "mux.localesystems.com:9443"
-  sntp_advertise: ""
-  weather_station_filter: ""
-# Behavioral configuration is NOT here (device-cloud-config.md D6). Whether
-# this Home shares anything with Locale Cloud, firmware updates, the Tempest
-# listener, device NTP and telemetry retention are decided on the OWNER'S
-# PHONE and written to this add-on over the LAN as a single document
+# log_level is the ONLY option (device-cloud-config.md D6). Whether this Home
+# shares anything with Locale Cloud, firmware updates, the Tempest listener,
+# device NTP, telemetry retention and the LAN tuning knobs (NTP advertise
+# address, weather station filter) are decided on the OWNER'S PHONE and
+# written to this add-on over the LAN as a single document
 # (internal/hubconfig, /data/home_config.json). With no document the add-on
 # is fail-closed: it dials nothing and forwards nothing until the owner's
-# phone visits. HA keeps the join ceremony (the ingress panel), process
-# diagnostics, and the dev/self-host endpoint VALUES below — pure values,
-# never decisions; blank = the baked default (a HAOS install has no env
-# path, which is why they remain settable here at all).
+# phone visits. The platform endpoints are baked into the build from the
+# contracts environments matrix (D1); a dev build targets a dev platform,
+# and the compose path may override them by env for local development.
 schema:
   log_level: "list(debug|info|warn|error)?"
-  # platform_url: Locale cloud base URL for firmware/OTA. Override only for
-  #   dev/self-host. Whether OTA runs at all is the phone's decision.
-  platform_url: "str?"
-  # platform_mux_addr: the platform's LMUX ingress (host:port) the cloud
-  #   tunnel dials. Override only for dev/self-host. Whether the tunnel
-  #   dials at all is the phone's decision (Locale Cloud).
-  platform_mux_addr: "str?"
-  # sntp_advertise: the host:port devices are pointed at for time; blank
-  #   derives from this host's LAN address. Only used while the phone's
-  #   config has device NTP on.
-  sntp_advertise: "str?"
-  # weather_station_filter: a Tempest serial to collect exclusively; blank
-  #   collects every station heard. Only used while the phone's config has
-  #   the weather listener on.
-  weather_station_filter: "str?"
