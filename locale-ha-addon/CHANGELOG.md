@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.2
+
+- Pairing panel: load the Locale Cloud status on page load (#100)
+
 ## 0.10.1
 
 - HA keeps log_level only; LAN knobs ride the phone's document; page shows Locale Cloud (#98)
