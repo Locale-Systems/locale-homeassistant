@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.3
+
+_No changes recorded._
+
 ## 0.10.2
 
 - Pairing panel: load the Locale Cloud status on page load (#100)
