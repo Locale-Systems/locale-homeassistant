@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.5
+
+- firmware: name the build's channel so a dev device can install a stable release (#104)
+
 ## 0.10.4
 
 - ci: set cache: false on setup-go in the release workflow (#101)
