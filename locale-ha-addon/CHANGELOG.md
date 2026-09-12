@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.10.4
+
+- ci: set cache: false on setup-go in the release workflow (#101)
+- devices: reboot + crash-loop detection and a UDP boot-log ring (§6a+6b) (#102)
+- relay: carry the inline subject cert (SubjectProof) on both edges (#103)
+
 ## 0.10.3
 
 _No changes recorded._
