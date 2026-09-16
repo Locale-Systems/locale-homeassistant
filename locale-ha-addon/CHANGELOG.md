@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.6
+
+- tempest: link the two live follow-ons to their Linear issues (#105)
+- ci: pin contracts + go-common in sibling-pins.env, label images with the revs (#106)
+- ci: shared checkout-siblings and signed-commit actions (#107)
+- docs: TO BUMP is make bump-pin (#108)
+- ci: re-pin the locale-docs actions, and install host deps via apt-ensure (#109)
+- firmware: offer the newest build across the Home's channels, not the device's (#110)
+
 ## 0.10.5
 
 - firmware: name the build's channel so a dev device can install a stable release (#104)
