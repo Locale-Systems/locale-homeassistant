@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.0
+
+- devices: follow otaflash's channel-less Registry.Builds (LOC-91) (#111)
+- onboarding: owner-only on the cert edge, and no re-rooting without presence (#112)
+- hub: honour revocation on the LAN edge (LOC-95) (#113)
+
 ## 0.10.6
 
 - tempest: link the two live follow-ons to their Linear issues (#105)
