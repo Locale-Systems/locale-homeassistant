@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.2
+
+- hub: record a device's refusal of the events subscription — log, back off, report in /hub/status (LOC-98) (#115)
+- hub: the LAN /events stream emits a keepalive on an idle bus (LOC-99) (#116)
+
 ## 0.11.1
 
 - hub: the LAN /events stream goes through the relay decision; requested scope from the contract (LOC-94) (#114)
