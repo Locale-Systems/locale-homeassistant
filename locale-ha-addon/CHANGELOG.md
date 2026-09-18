@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.1
+
+- hub: the LAN /events stream goes through the relay decision; requested scope from the contract (LOC-94) (#114)
+
 ## 0.11.0
 
 - devices: follow otaflash's channel-less Registry.Builds (LOC-91) (#111)
