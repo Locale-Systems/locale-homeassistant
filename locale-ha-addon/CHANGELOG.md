@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.11.3
+
+- pins: locale-contracts @ 4982321, locale-go-common @ 50b468c — corpus v21 (LOC-23) (#117)
+- onboarding: pin the installation, tell a rotation from a move, and make a move explicit on /pair (LOC-96) (#118)
+- docs: a bridged hub runs host-networked or is reinstalled — no re-pair, no move (LOC-101) (#119)
+- firmware: the registry download names the device it is for (LOC-104) (#120)
+
 ## 0.11.2
 
 - hub: record a device's refusal of the events subscription — log, back off, report in /hub/status (LOC-98) (#115)

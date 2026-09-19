@@ -34,9 +34,12 @@ not type a host, port, or token — see [Connecting the integration](#connecting
 **Networking matters.** The add-on uses host networking so it has L2 reach
 for mDNS discovery, for serving SNTP, and for same-subnet pairing. On a
 Docker bridge (common on macOS/Windows) mDNS and same-subnet detection both
-fail together; the manual fallback still works but you lose the zero-paste
-paths. A host-networked install (the HAOS add-on, or the recommended compose
-file) is strongly preferred.
+fail together. The manual fallback still enrolls the hub and re-grants it under
+the same Home, but a hub on a bridge can never be re-paired after its Home's
+Root key is replaced, nor moved to another Home — both need the pairing
+handshake, which does not cross a bridge. A host-networked install (the HAOS
+add-on, or the recommended compose file) is the supported configuration; use a
+bridge only for a hub you are prepared to reinstall.
 
 ---
 
@@ -72,10 +75,34 @@ short-passcode PAKE.
    bearer is issued locally, and the page shows success. From here on the
    phone manages everything over mTLS; the pairing window disarms.
 
+**Pairing again.** A hub belongs to one Home. Arming pairing again from the
+**same** Home — to re-issue the hub's certificate after an update that needs
+more scope, or to add devices — is an ordinary pairing and changes nothing
+else. The page says which Home the hub is enrolled in and how many devices it
+adopted.
+
+**Moving the hub to another Home.** Pairing from a *different* Home is a
+reset, not an addition, and the hub refuses it unless you asked for it: open
+**Move this hub to another Home…** on the setup page, read what it drops
+(every adopted device, the settings the Locale app wrote — Locale Cloud,
+firmware updates, weather, device time — and its revocation list; the devices
+themselves are untouched), tick the acknowledgement and arm pairing from
+there. The new Home's grant then completes the move. A grant from another Home
+sent through an ordinary pairing window is refused with the reason shown on
+the phone and on the page. Re-pairing from the same Home after its Root key
+was replaced (a recovery, or an installer handing the Home over to its owner)
+is not a move and needs no acknowledgement.
+
 **Bridged / NAT fallback.** When mDNS and same-subnet detection fail (Docker
-bridge, segmented VLANs), the `/pair` page still renders the QR/code but you
-enter the add-on's host manually in the app and deliver the grant by paste.
-Same result, two more steps.
+bridge, segmented VLANs), the `/pair` page still renders the QR/code, but the
+handshake cannot reach the hub; pairing then goes through the integration's
+**Adopt devices** flow (request blob out, grant blob pasted back). That path
+enrolls a hub for the first time and re-grants it under the same Home. It
+cannot re-pair a hub whose Home replaced its Root key, and it cannot move a
+hub to another Home — both need the handshake, which does not cross a bridge.
+That is by decision, not a gap: host networking is the supported
+configuration, and a bridged hub that needs either is reinstalled (its data
+directory removed) and enrolled afresh.
 
 ---
 
