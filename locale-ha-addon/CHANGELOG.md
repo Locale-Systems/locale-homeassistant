@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.1
+
+- home update: the same revision republishes the copies; the records name the holders (LOC-109) (#124)
+
 ## 0.12.0
 
 - pins: corpus v22 lockstep — the household maintenance tier (LOC-106) (#121)
