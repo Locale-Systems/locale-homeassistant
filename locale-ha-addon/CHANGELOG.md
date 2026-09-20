@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.12.0
+
+- pins: corpus v22 lockstep — the household maintenance tier (LOC-106) (#121)
+- pins: corpus v23 lockstep — the Home update section (LOC-107) (#122)
+- home update: the hub stores it, serves each member its copy, and adopts devices from it (LOC-109) (#123)
+
 ## 0.11.3
 
 - pins: locale-contracts @ 4982321, locale-go-common @ 50b468c — corpus v21 (LOC-23) (#117)
