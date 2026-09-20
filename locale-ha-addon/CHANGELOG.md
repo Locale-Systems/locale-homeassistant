@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.2
+
+- relay advert: re-stand without a gap — the new responder before the old one is shut (#125)
+
 ## 0.12.1
 
 - home update: the same revision republishes the copies; the records name the holders (LOC-109) (#124)
