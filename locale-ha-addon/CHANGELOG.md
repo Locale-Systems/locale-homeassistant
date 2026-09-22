@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.1
+
+- setupui: a mount registered beside "GET /" panics the add-on on boot (#154)
+
 ## 0.13.0
 
 - docs: chemistry lab handoff — a replayable advisory loop beside the device loop (#126)
