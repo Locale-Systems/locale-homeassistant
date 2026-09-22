@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.3
+
+- chemlab: say which volume an estimate used, and when the device cannot be read (#157)
+
 ## 0.13.2
 
 - hubconfig: merge the document, never overwrite it (LOC-162) (#155)
