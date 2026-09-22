@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.13.0
+
+- docs: chemistry lab handoff — a replayable advisory loop beside the device loop (#126)
+- docs: chemistry lab Phase 0 — the three series arrive live, nothing keeps them (#127)
+- chemlab: the replayable log — schema, store, and one installation per database (#128)
+- chemlab: ingest the exported platform history, collapsing the heartbeat (#129)
+- chemlab: the action ledger, the volume history, and the cell's salt estimate (#130)
+- chemlab: E0's estimator, ported and checked against the device's own output (#131)
+- chemlab: E0's control law and rate limiter, and the guards the pool never tripped (#132)
+- chemlab: uncertainty is proportional, with a floor (#135)
+- chemlab: E1, which fits the baseline instead of the last pair (#134)
+- docs: acceptance criteria someone can fail (#133)
+- chemlab: the residual classifier, which has to work over windows (#136)
+- chemlab: E2, the base duty the pool demonstrated rather than the one physics predicts (#137)
+- chemlab: the pool is 10,000 gallons and always was (#138)
+- the inline subject cert is a member phone's too (comment only) (#139)
+- chemlab: wire the estimators together, and find out the physics was never broken (#140)
+- chemlab: a ledger date is a bracket, and an instrument change reaches only so far (#141)
+- chemlab: E1 was overconfident where its spans disagreed, not where its readings did (#142)
+- docs: restate criteria 1 and 4 to test what the incidents actually taught (#143)
+- chemlab: the residual series was nil at every point (#144)
+- chemlab: a replay diff has to say what the difference can be blamed on (#145)
+- chemlab: draw a run, and refuse to draw it as one confident number (#146)
+- chemlab: one notification hook built, one refused with the number (#147)
+- chemlab: run the lab in the add-on, off the telemetry it already holds (#148)
+- chemlab: hold the readings the registry cannot price, instead of losing them (#149)
+- chemistry: the fetch loop outlived the test that started it (#150)
+- chemlab: what the device's own law concludes from the lab's numbers, and a page to read it (#151)
+- chemlab: publish the advisory the way weather publishes an observation (#152)
+- cloudtunnel: the home-scoped drain is not weather's alone (LOC-155, 3 of 3) (#153)
+
 ## 0.12.2
 
 - relay advert: re-stand without a gap — the new responder before the old one is shut (#125)
