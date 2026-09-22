@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.4
+
+- chemlab: retry the device volume read on a pass that will not estimate (#158)
+
 ## 0.13.3
 
 - chemlab: say which volume an estimate used, and when the device cannot be read (#157)
