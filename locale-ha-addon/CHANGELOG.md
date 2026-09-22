@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.6
+
+- chemlab: a pool is what the log says it is, not what a config read implies (#160)
+
 ## 0.13.5
 
 - chemlab: no estimate without a volume the board confirmed, and a pool is a (#159)
