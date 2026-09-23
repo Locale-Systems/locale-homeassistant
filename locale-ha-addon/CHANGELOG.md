@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.9
+
+- config: the switch comments outlived their fields — move them, and fix what went stale on the way (#163)
+
 ## 0.13.8
 
 - chemlab: one source for device_type, and a not-a-pool line worth reading (#162)
