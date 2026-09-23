@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.8
+
+- chemlab: one source for device_type, and a not-a-pool line worth reading (#162)
+
 ## 0.13.7
 
 - chemlab: a restart is not new evidence (#161)
