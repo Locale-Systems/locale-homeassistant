@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.10
+
+- telemetry: retention runs at startup, so a device that goes quiet stops keeping everything (#164)
+- telemetry: say what the logs cost, and name a device that stopped sending (#165)
+
 ## 0.13.9
 
 - config: the switch comments outlived their fields — move them, and fix what went stale on the way (#163)
