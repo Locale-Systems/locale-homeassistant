@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.7
+
+- chemlab: a restart is not new evidence (#161)
+
 ## 0.13.6
 
 - chemlab: a pool is what the log says it is, not what a config read implies (#160)
