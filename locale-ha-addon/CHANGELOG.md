@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.11
+
+- chemlab: estimate on a new free-chlorine reading, not on a fresh cell sample (LOC-198) (#166)
+- chemlab: rank basins by the evidence they explain away, not by how many intervals (LOC-197) (#167)
+- chemlab: E1 may pair a WaterGuru reading with a Taylor one (LOC-200) (#168)
+
 ## 0.13.10
 
 - telemetry: retention runs at startup, so a device that goes quiet stops keeping everything (#164)
