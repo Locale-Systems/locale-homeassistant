@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.12
+
+- chemlab: delivered chlorine is metered from the charge counter, not assumed from the duty setting (LOC-201) (#169)
+- chemlab: a recorded chlorine dose, and 48 h of its burn-off, are not decay (LOC-201) (#170)
+- chemlab: E2 weighs a duty by how long it ran, and says which way its base is biased (LOC-201) (#171)
+- api: POST /chemlab/ledger takes the owner's pool ledger entries; a ledger change is estimated at once (LOC-201) (#172)
+
 ## 0.13.11
 
 - chemlab: estimate on a new free-chlorine reading, not on a fresh cell sample (LOC-198) (#166)
