@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.13
+
+- api: DELETE /chemlab/ledger/{id} takes back a wrong ledger entry (LOC-201) (#173)
+
 ## 0.13.12
 
 - chemlab: delivered chlorine is metered from the charge counter, not assumed from the duty setting (LOC-201) (#169)
