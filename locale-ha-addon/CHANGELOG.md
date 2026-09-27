@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.14
+
+- chemlab: the run input hash covers the ledger (LOC-208) (#174)
+- chemlab: the ledger vocabulary comes from locale-contracts (LOC-207) (#175)
+- chemlab: hold the ledger's actor CHECK to the generated vocabulary (LOC-207) (#176)
+- devices, bootlog: an unknown previous uptime stays unknown; name the new abnormal resets (LOC-211) (#177)
+
 ## 0.13.13
 
 - api: DELETE /chemlab/ledger/{id} takes back a wrong ledger entry (LOC-201) (#173)
