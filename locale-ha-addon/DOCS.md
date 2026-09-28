@@ -270,6 +270,19 @@ Info level that the device kept the newer value. The same is true of a
 reading the hub will not send to the device at all (out of range, or too
 old to act on): the lab records it, with the reason, and the log says why.
 
+The hub also records WaterGuru's total alkalinity, calcium hardness and salt
+in the lab, as WaterGuru reports them. It never sends those to the device:
+they are not inputs the device controls on. (Saturation index and total
+hardness are not recorded — WaterGuru computes them from the others.)
+
+**The chemistry lab** has its own pages: what it concludes from your pool's
+readings, a chart per run, and a **Readings** table of every reading it
+holds — including the ones the device did not take, and any it set aside,
+with the reason. Open it with **Open chemistry lab** on the Locale Pairing
+panel (it opens in a new tab). Reached that way it is behind your Home
+Assistant sign-in; at the hub's own address (`http://<host>:8088/lab/`) it
+has no sign-in. The lab is read-only: nothing in it changes the device.
+
 ---
 
 ## Data directory

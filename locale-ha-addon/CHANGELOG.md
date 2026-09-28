@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.16
+
+- chemistry, chemlab: record WaterGuru's TA, CH and salt (LOC-219) (#179)
+- labui, setupui: a Readings page, and "Open chemistry lab" on the setup page (LOC-220) (#180)
+
 ## 0.13.15
 
 - chemistry, chemlab: a reading a model does not want is still a reading (LOC-216) (#178)
