@@ -262,6 +262,14 @@ a test), and each poll counts toward the daily sign-in limit the hub
 keeps to protect your WaterGuru account; once that is spent the button
 says when the next poll can run.
 
+If you enter a test result by hand — a drop-kit titration, say — before
+the hub has fetched that day's WaterGuru reading, the device keeps your
+entry, because it is newer. The WaterGuru reading is not lost: it goes
+into the chemistry lab's record beside yours, and the add-on log says at
+Info level that the device kept the newer value. The same is true of a
+reading the hub will not send to the device at all (out of range, or too
+old to act on): the lab records it, with the reason, and the log says why.
+
 ---
 
 ## Data directory

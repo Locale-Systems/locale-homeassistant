@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.15
+
+- chemistry, chemlab: a reading a model does not want is still a reading (LOC-216) (#178)
+
 ## 0.13.14
 
 - chemlab: the run input hash covers the ledger (LOC-208) (#174)
