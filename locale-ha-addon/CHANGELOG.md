@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.18
+
+- chemlab: record the site's UV and draw each interval's dose (LOC-212) (#182)
+
 ## 0.13.17
 
 - chemlab: restate single-cell delivery to the stack's scale (LOC-197) (#181)
