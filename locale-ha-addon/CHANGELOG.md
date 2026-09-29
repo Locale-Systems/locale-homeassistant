@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.19
+
+- chemlab: full drive runs on the recorded flow switch (LOC-125) (#183)
+
 ## 0.13.18
 
 - chemlab: record the site's UV and draw each interval's dose (LOC-212) (#182)
