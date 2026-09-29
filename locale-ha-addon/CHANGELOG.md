@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.17
+
+- chemlab: restate single-cell delivery to the stack's scale (LOC-197) (#181)
+
 ## 0.13.16
 
 - chemistry, chemlab: record WaterGuru's TA, CH and salt (LOC-219) (#179)
