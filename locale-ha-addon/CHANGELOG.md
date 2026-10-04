@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.0
+
+- firmware command carries the build's digest; the image-push paths go (LOC-231) (#184)
+
 ## 0.13.19
 
 - chemlab: full drive runs on the recorded flow switch (LOC-125) (#183)
