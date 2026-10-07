@@ -10,11 +10,10 @@
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/Locale-Systems/locale-homeassistant/issues",
   "requirements": [
-    "betterproto>=1.2.5",
     "segno>=1.6,<2"
   ],
   "single_config_entry": true,
-  "version": "0.11.4",
+  "version": "0.11.5",
   "zeroconf": [
     "_locale-addon._tcp.local."
   ]
