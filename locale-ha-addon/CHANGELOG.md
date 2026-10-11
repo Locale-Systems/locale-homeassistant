@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1
+
+- sibling pins: go-common 0c7e573, the mux race fixes (LOC-275) (#185)
+
 ## 0.14.0
 
 - firmware command carries the build's digest; the image-push paths go (LOC-231) (#184)
