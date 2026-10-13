@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.0
+
+- bodies: the hub reads the body list from the Home update it verifies (LOC-289) (#186)
+
 ## 0.14.1
 
 - sibling pins: go-common 0c7e573, the mux race fixes (LOC-275) (#185)
