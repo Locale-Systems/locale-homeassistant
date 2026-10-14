@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.1
+
+- journal: the hub's copy of the Home's log, its sync, and the chem lab on it (LOC-292) (#187)
+
 ## 0.15.0
 
 - bodies: the hub reads the body list from the Home update it verifies (LOC-289) (#186)
