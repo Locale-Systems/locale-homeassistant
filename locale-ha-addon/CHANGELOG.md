@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.4
+
+- journal: a recovered test names its writer by role, not by an opaque reference (LOC-294) (#190)
+
 ## 0.15.3
 
 - journal: each body's latest readings and last-done actions, and Home Assistant's water tests (LOC-294) (#189)
