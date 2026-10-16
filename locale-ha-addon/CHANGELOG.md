@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.3
+
+- journal: each body's latest readings and last-done actions, and Home Assistant's water tests (LOC-294) (#189)
+
 ## 0.15.2
 
 - journal: water tests on the hub — forwarding to the flowsense, WaterGuru on the log, the device's history (LOC-293) (#188)
