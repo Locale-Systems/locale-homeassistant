@@ -88,6 +88,27 @@ Installing streams the image straight to the device and it reboots
 automatically; the device page reflects the new version once it's
 back.
 
+### Bodies of water
+
+Each body of water in your Home — the pool, a separate spa — is a device
+of its own, read from the Home's activity log the add-on keeps:
+
+- one sensor per water-test value (free chlorine, pH, CYA, salt, TA, CH,
+  CC): the newest test, whoever took it — a test kit, a pool service, a
+  WaterGuru — with when and by what as attributes;
+- for each maintenance task, a **Days since** sensor and a **Mark done**
+  button that logs it done now. Cleaning the filter, backwashing, emptying
+  the skimmer and pump baskets, brushing and vacuuming are on by default;
+  the rest are there to enable.
+
+They refresh every minute, and straight after anything Home Assistant
+logs.
+
+**Submit chemistry readings** records a water test on the log; the add-on
+passes each value the pool controller uses on to it. **Record pool
+action** logs a dose or a task, and **Delete pool action** retracts one
+Home Assistant logged. Each takes a pool controller or a body of water.
+
 ## Offline behavior
 
 The integration caches what it needs so devices still render (as
