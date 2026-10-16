@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.2
+
+- journal: water tests on the hub — forwarding to the flowsense, WaterGuru on the log, the device's history (LOC-293) (#188)
+
 ## 0.15.1
 
 - journal: the hub's copy of the Home's log, its sync, and the chem lab on it (LOC-292) (#187)
