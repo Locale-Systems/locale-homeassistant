@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.6
+
+- journal: a company's entries survive a renewal; the owner retracts a visit's entry (LOC-295) (#192)
+
 ## 0.15.5
 
 - journal: Home Assistant's entries name who in Home Assistant did it (LOC-294) (#191)
