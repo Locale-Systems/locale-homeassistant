@@ -109,6 +109,9 @@ passes each value the pool controller uses on to it. **Record pool
 action** logs a dose or a task, and **Delete pool action** retracts one
 Home Assistant logged. Each takes a pool controller or a body of water.
 
+Whatever Home Assistant logs says who did it: the person, by their display
+name (or username), or the automation or script that ran.
+
 ## Offline behavior
 
 The integration caches what it needs so devices still render (as
