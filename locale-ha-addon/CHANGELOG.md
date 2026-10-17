@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.5
+
+- journal: Home Assistant's entries name who in Home Assistant did it (LOC-294) (#191)
+
 ## 0.15.4
 
 - journal: a recovered test names its writer by role, not by an opaque reference (LOC-294) (#190)
