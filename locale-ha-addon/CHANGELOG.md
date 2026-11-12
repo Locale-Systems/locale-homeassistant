@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.15.7
+
+- A key's fingerprint comes from go-common (LOC-322) (#193)
+- sibling pins: go-common with one P-256 key parse (LOC-322) (#194)
+
 ## 0.15.6
 
 - journal: a company's entries survive a renewal; the owner retracts a visit's entry (LOC-295) (#192)
