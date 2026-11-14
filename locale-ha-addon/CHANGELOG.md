@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.2
+
+- A logged test that will not go in no longer stalls the lab (LOC-326) (#197)
+
 ## 0.16.1
 
 - A correction on the log reaches a reading from before its entry (LOC-326) (#196)
