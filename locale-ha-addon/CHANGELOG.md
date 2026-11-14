@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.5
+
+- The lab does not run again over inputs its newest run already saw (LOC-329) (#200)
+
 ## 0.16.4
 
 - The device's slot goes to the better reading, whichever arrived first (LOC-321) (#199)
