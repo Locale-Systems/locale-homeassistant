@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.6
+
+- The lab records every reading of a logged test, not only what a device takes (LOC-328) (#201)
+
 ## 0.16.5
 
 - The lab does not run again over inputs its newest run already saw (LOC-329) (#200)
