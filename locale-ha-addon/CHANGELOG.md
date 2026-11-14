@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.3
+
+- A person's reading seconds off the log's time is the same measurement (LOC-326) (#198)
+
 ## 0.16.2
 
 - A logged test that will not go in no longer stalls the lab (LOC-326) (#197)
