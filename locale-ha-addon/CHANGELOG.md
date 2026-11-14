@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.1
+
+- A correction on the log reaches a reading from before its entry (LOC-326) (#196)
+
 ## 0.16.0
 
 - Every logged water test reaches the lab, whatever the device took (LOC-326) (#195)
