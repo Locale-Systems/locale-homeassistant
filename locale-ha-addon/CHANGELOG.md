@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.4
+
+- The device's slot goes to the better reading, whichever arrived first (LOC-321) (#199)
+
 ## 0.16.3
 
 - A person's reading seconds off the log's time is the same measurement (LOC-326) (#198)
