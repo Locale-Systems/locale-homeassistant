@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.0
+
+- Every logged water test reaches the lab, whatever the device took (LOC-326) (#195)
+
 ## 0.15.7
 
 - A key's fingerprint comes from go-common (LOC-322) (#193)
