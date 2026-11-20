@@ -43,6 +43,46 @@ bridge only for a hub you are prepared to reinstall.
 
 ---
 
+## Signing in to a standalone hub
+
+Under Home Assistant (HAOS / Supervised) there is nothing to do here: the
+**Locale Pairing** panel is behind your Home Assistant sign-in, and it is the
+only way to the setup page.
+
+A standalone hub (plain Docker beside HA Container or Core) has no Home
+Assistant in front of its page, so the page opens **locked**. Anyone on your
+network can see the hub's status there, but arming pairing, showing the
+integration token, and changing the WaterGuru account need you to sign in.
+
+1. On the machine running the hub, run:
+
+   ```
+   docker exec <container> locale-ha-addon ui-login
+   ```
+
+   (With the bundled compose file, `docker compose exec locale-ha-addon
+   locale-ha-addon ui-login` from its directory.)
+2. Open the link it prints in a browser on your network, or open the page and
+   type the code. A code works **once**, for **five minutes**; run the command
+   again for another.
+3. Your browser warns that the page's certificate isn't trusted: the hub made
+   it itself, because no public authority issues certificates for a home
+   network address. `ui-login` prints the certificate's SHA-256 fingerprint;
+   compare it with the one your browser shows if you want to be sure you
+   reached your hub. The browser remembers your choice, so the warning comes
+   back only when the certificate changes (a new LAN address, or about once a
+   year).
+
+A session ends after 30 minutes without use, after 12 hours regardless, when
+you click **Sign out**, or when the hub restarts. Being able to run
+`docker exec` is what proves you own the hub, so this also works when you have
+lost your phone or your Home's Root key changed.
+
+The page is served over HTTPS, so the session and your WaterGuru password are
+encrypted on the network. Plain `http://` to the setup port no longer works.
+
+---
+
 ## Pairing the add-on to your phone (enrollment)
 
 Before the add-on can adopt any devices it must be **enrolled** by your
@@ -57,8 +97,9 @@ short-passcode PAKE.
    no host or port to type). Under Supervisor the panel is the only way in:
    the setup port answers nothing that did not come through Home Assistant,
    so `http://<host>:8088/` from another machine gets a refusal.
-   Standalone, browse to the add-on host directly
-   (e.g. `http://locale.local/`, advertised over mDNS) on the setup port.
+   Standalone, browse to the add-on host directly over HTTPS on the setup
+   port (e.g. `https://locale.local:8088/`, advertised over mDNS). The page
+   opens locked: see **Signing in to a standalone hub** below.
 2. **Arm pairing.** Click **Arm pairing**. The add-on generates a short,
    single-use, time-boxed passcode (~5 min) and renders a **QR code** plus
    the code. The QR carries the add-on's mDNS instance id, LAN endpoint
@@ -250,8 +291,8 @@ phone has not configured yet — next to the pairing controls.
 ## Water chemistry (WaterGuru)
 
 The WaterGuru connector is configured from the add-on's **web UI** (the
-Locale Pairing panel under Supervisor; `http://locale.local:8088`
-standalone), not from the options
+Locale Pairing panel under Supervisor; `https://locale.local:8088`
+standalone, once signed in), not from the options
 above — it needs your WaterGuru sign-in, and a password does not belong
 in the add-on configuration. Enter the account there and the hub fetches
 water chemistry about once a day; remove the credentials there to turn
@@ -285,7 +326,7 @@ holds — including the ones the device did not take, and any it set aside,
 with the reason. Open it with **Open chemistry lab** on the Locale Pairing
 panel (it opens in a new tab). Under Supervisor that is the only way to it,
 behind your Home Assistant sign-in. Standalone it is at the hub's own address
-(`http://<host>:8088/lab/`), with no sign-in. The lab is read-only: nothing
+(`https://<host>:8088/lab/`), with no sign-in. The lab is read-only: nothing
 in it changes the device.
 
 ---
@@ -305,6 +346,8 @@ a named volume in compose). Notable files:
 | `ha_server_cert.der` | Root-signed server TLS leaf |
 | `adopted_devices.json` | adopted-device store |
 | `telemetry/` | local telemetry store + forward queue |
+| `setup_ui_cert.pem`, `setup_ui_key.pem` | standalone only: the setup page's own HTTPS certificate |
+| `setup-ui-codes/` | standalone only: unspent one-time sign-in codes (by hash) |
 
 Wiping the data dir resets the add-on to an un-enrolled state — you would
 re-pair from scratch.

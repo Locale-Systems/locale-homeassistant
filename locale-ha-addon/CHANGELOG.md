@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.17.1
+
+- A standalone setup page signs in with a one-time code, over HTTPS (LOC-63) (#203)
+
 ## 0.17.0
 
 - Under Supervisor the setup page answers ingress only (LOC-63) (#202)
