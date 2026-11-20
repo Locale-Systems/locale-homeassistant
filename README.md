@@ -20,7 +20,7 @@ It comes as **two pieces from this one repository**:
 
 ## Requirements
 
-- Home Assistant 2025.10 or later.
+- Home Assistant 2026.11 or later.
 - A Locale device on current firmware.
 - The **Locale Home** iOS app (the device's admin authorizes Home
   Assistant from there).
