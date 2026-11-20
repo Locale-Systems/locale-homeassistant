@@ -15,7 +15,7 @@
 # single source of truth.
 name: Locale
 slug: locale_ha_addon
-version: "0.16.6"
+version: "0.17.0"
 description: >-
   Locale hub for Home Assistant — holds the platform connection and HA's
   signing key, discovers Locale devices on the LAN, serves them time, and
@@ -41,6 +41,11 @@ host_network: true
 # ingress_port is the UI port the add-on serves (ADDON_UI_ADDR, default
 # :8088); keep it free on the host (host_network). Setup-only page — this
 # is the only Supervisor coupling, and it is benign.
+#
+# host_network also puts :8088 on the host's LAN interfaces, where nothing
+# signs the caller in. Under Supervisor the add-on therefore answers only
+# requests from the Supervisor's ingress proxy (172.30.32.2) and refuses the
+# rest (internal/setupui/ingress.go, LOC-63): the panel is the only way in.
 ingress: true
 ingress_port: 8088
 panel_icon: mdi:link-variant

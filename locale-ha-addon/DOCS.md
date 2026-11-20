@@ -54,7 +54,10 @@ short-passcode PAKE.
 
 1. **Open the setup page.** Under Supervisor, open the **Locale Pairing**
    panel in the HA sidebar (served over ingress, so HA-admin auth is free —
-   no host or port to type). Standalone, browse to the add-on host directly
+   no host or port to type). Under Supervisor the panel is the only way in:
+   the setup port answers nothing that did not come through Home Assistant,
+   so `http://<host>:8088/` from another machine gets a refusal.
+   Standalone, browse to the add-on host directly
    (e.g. `http://locale.local/`, advertised over mDNS) on the setup port.
 2. **Arm pairing.** Click **Arm pairing**. The add-on generates a short,
    single-use, time-boxed passcode (~5 min) and renders a **QR code** plus
@@ -247,7 +250,8 @@ phone has not configured yet — next to the pairing controls.
 ## Water chemistry (WaterGuru)
 
 The WaterGuru connector is configured from the add-on's **web UI** (the
-Locale Pairing panel / `http://locale.local:8088`), not from the options
+Locale Pairing panel under Supervisor; `http://locale.local:8088`
+standalone), not from the options
 above — it needs your WaterGuru sign-in, and a password does not belong
 in the add-on configuration. Enter the account there and the hub fetches
 water chemistry about once a day; remove the credentials there to turn
@@ -279,9 +283,10 @@ hardness are not recorded — WaterGuru computes them from the others.)
 readings, a chart per run, and a **Readings** table of every reading it
 holds — including the ones the device did not take, and any it set aside,
 with the reason. Open it with **Open chemistry lab** on the Locale Pairing
-panel (it opens in a new tab). Reached that way it is behind your Home
-Assistant sign-in; at the hub's own address (`http://<host>:8088/lab/`) it
-has no sign-in. The lab is read-only: nothing in it changes the device.
+panel (it opens in a new tab). Under Supervisor that is the only way to it,
+behind your Home Assistant sign-in. Standalone it is at the hub's own address
+(`http://<host>:8088/lab/`), with no sign-in. The lab is read-only: nothing
+in it changes the device.
 
 ---
 

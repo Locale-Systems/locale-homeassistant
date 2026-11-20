@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.17.0
+
+- Under Supervisor the setup page answers ingress only (LOC-63) (#202)
+
 ## 0.16.6
 
 - The lab records every reading of a logged test, not only what a device takes (LOC-328) (#201)
