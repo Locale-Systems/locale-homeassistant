@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.17.2
+
+- The owner's phone can unlock the setup page (LOC-63) (#204)
+
 ## 0.17.1
 
 - A standalone setup page signs in with a one-time code, over HTTPS (LOC-63) (#203)

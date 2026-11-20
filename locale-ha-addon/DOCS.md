@@ -62,6 +62,10 @@ integration token, and changing the WaterGuru account need you to sign in.
 
    (With the bundled compose file, `docker compose exec locale-ha-addon
    locale-ha-addon ui-login` from its directory.)
+
+   Or, from the **Locale app** on the Home owner's phone, on your home Wi-Fi:
+   open the Hub screen and tap **Open setup page**. The app opens the page
+   signed in, and shows the code to type on a computer.
 2. Open the link it prints in a browser on your network, or open the page and
    type the code. A code works **once**, for **five minutes**; run the command
    again for another.
